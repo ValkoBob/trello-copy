@@ -18,8 +18,10 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
+    "redux": "latest",
     "tslint-react": "^4.2.0",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "redux-thunk": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-redux": "^7.1.7"
   }
 }

@@ -1,17 +1,22 @@
 {
-  "extends": "tslint:latest",
+  "extends": "tslint:recommended",
   "rules": {
-    "file-header": {
-      "options": ["Copyright \\d{4} Palantir Technologies, Inc."]
+    "max-line-length": {
+      "options": [120]
     },
-    "max-classes-per-file": {
-      "options": [2]
-    },
-    "no-default-export": true,
-    "no-submodule-imports": {
-      "options": ["tsutils"]
-    },
-    "restrict-plus-operands": true,
-    "strict-boolean-expressions": true
+    "new-parens": true,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-conditional-assignment": true,
+    "no-consecutive-blank-lines": false,
+    "no-console": {
+      "severity": "warning",
+      "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
+    }
+  },
+  "jsRules": {
+    "max-line-length": {
+      "options": [120]
+    }
   }
 }

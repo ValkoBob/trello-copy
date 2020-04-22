@@ -20,7 +20,6 @@
     "react-scripts": "3.4.1",
     "redux": "latest",
     "tslint-react": "^4.2.0",
-    "typescript": "~3.7.2",
     "redux-thunk": "latest"
   },
   "scripts": {
@@ -45,6 +44,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-redux": "^7.1.7"
+    "@types/react-redux": "^7.1.7",
+    "tslint": "^6.1.1",
+    "typescript": "^3.7.5"
   }
 }

@@ -2,12 +2,12 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import './App.css';
-import TestComponent from "./components/TestComponent";
+import Routes from "./routes";
 
 const App: React.FC = () => {
   return (
       <Provider store={store}>
-        <TestComponent />
+        <Routes />
       </Provider>
   );
 };

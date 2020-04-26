@@ -16,11 +16,12 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
+    "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "redux": "latest",
-    "tslint-react": "^4.2.0",
-    "redux-thunk": "latest"
+    "redux-thunk": "latest",
+    "tslint-react": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "@types/react-redux": "^7.1.7",
+    "@types/react-router": "^5.1.5",
     "tslint": "^6.1.1",
     "typescript": "^3.7.5"
   }

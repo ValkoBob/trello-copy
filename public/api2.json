@@ -1,0 +1,31 @@
+{
+  "user": {
+    "id": 2,
+    "name": "John",
+    "surname": "Doe",
+    "avatar": "посилання на картинку",
+    "role": "admin|user"
+  },
+  "board": {
+    "id": 1,
+    "title": "my-cool-board",
+    "_background": ""
+  },
+  "list": {
+    "id": 2,
+    "title": "todo_todo",
+    "position": 2,
+    "archived": false
+  },
+  "card": {
+    "id": 1,
+    "list_id": 2,
+    "board_id": 1,
+    "title": "купити кота and customization",
+    "users": [1, 2],
+    "description": "у магазині на ринку or customization",
+    "slug": "kupytu-kota-board",
+    "archived": false,
+    "created_at": 1587540771052
+  }
+}

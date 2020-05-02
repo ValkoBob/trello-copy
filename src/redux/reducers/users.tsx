@@ -18,5 +18,7 @@ export const users = (state = INITIAL_STATE, action: any) => {
                 // @ts-ignore
                 users: state.users.filter(user => user.id !== action.payload.id)
             }
+        default:
+            return state;
     }
 }

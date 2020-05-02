@@ -1,0 +1,216 @@
+%style_for-nav {
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  align-items: center;
+  background-color: hsla(0, 0%, 100%, .3);
+  box-shadow: none;
+  color: #fff;
+  display: flex;
+  font-weight: 700;
+  height: 32px;
+  line-height: 32px;
+  margin: 0 4px 0 0;
+}
+.header {
+  height: 32px;
+  position: relative;
+  background: #026aa7;
+  overflow: hidden;
+  padding: 4px  20px 4px 20px;
+  z-index: 10;
+  box-sizing: border-box;
+  display: flex;
+  min-height: 40px;
+  justify-content: space-between;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+
+.header-nav-home {
+  padding: 0;
+  @extend %style_for-nav;
+  transition: .1s ease;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.header-nav-home__icon {
+  color: #fff;
+  font-size: 20px;
+  height: 32px;
+  line-height: 32px;
+  width: 32px;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: bottom;
+  cursor: pointer;
+  white-space: nowrap;
+  content: "\E933"
+}
+
+.header-nav-button {
+  @extend %style_for-nav;
+  padding: 0;
+  transition: .1s ease;
+  white-space: nowrap;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  position: relative;
+  font-size: 14px;
+  text-transform: none;
+  overflow: visible;
+}
+
+.header-nav-button__board {
+  color: #fff !important;
+  font-size: 20px;
+  height: 32px;
+  line-height: 32px;
+  width: 32px;
+  cursor: pointer;
+  text-transform: none;
+}
+
+.header-nav-button__title {
+  transition: .1s ease;
+  overflow: hidden;
+  padding: 0 8px 0 2px;
+  max-width: 150px;
+}
+
+.header-logo {
+  display: block;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  top: 5px;
+}
+
+a {
+  color: #172b4d;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.header-logo-container__icon1 {
+  background-image: url(https://a.trellocdn.com/prgb/dist/images/header-loading-logo.d73159084f5122775d4d.gif);
+  background-size: 18px 18px;
+  display: inline-block;
+  opacity: 0;
+  height: 18px;
+  right: 59px;
+  position: absolute;
+  top: 6px;
+  width: 18px;
+}
+
+a:hover {
+  color: #091e42;
+}
+
+.header-logo-container__icon2 {
+  opacity: .5;
+  background-image: url(https://a.trellocdn.com/prgb/dist/images/header-logo-2x.01ef898811a879595cea.png);
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  background-size: 80px 30px;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  width: 80px;
+}
+
+.header-logo-title {
+  color: #fff;
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 10px;
+  opacity: .5;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.header-userbar {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.header-userbar-newboard {
+  @extend %style_for-nav;
+  padding: 0;
+  transition: .1s ease;
+  white-space: nowrap;
+}
+
+button {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  position: relative;
+  text-transform: none;
+  overflow: visible;
+  font: inherit;
+}
+
+.header-userbar-newboard__add {
+  color: #fff !important;
+  font-size: 20px;
+  height: 32px;
+  line-height: 32px;
+  width: 32px;
+  cursor: pointer;
+}
+
+.header-userbar-user {
+  border: none;
+  box-shadow: none;
+  color: #172b4d;
+  background-color: transparent;
+  display: block;
+  height: 32px;
+  margin-right: 0;
+  position: relative;
+  width: 32px;
+  outline: 0;
+}
+
+.header-userbar-user__content {
+  position: relative;
+  line-height: 10px;
+  white-space: nowrap;
+}
+
+.header-userbar-user__avatar {
+  align-items: center;
+  background-color: #dfe1e6;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 0;
+  border-radius: 100%;
+  box-sizing: border-box;
+  color: #172b4d;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 28px;
+  opacity: 1;
+  height: 28px;
+  width: 28px;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+}

@@ -1,0 +1,10 @@
+{
+  "lists": [
+    {
+      "id": 1,
+      "title": "todo",
+      "position": 1,
+      "archived": true
+    }
+  ]
+}

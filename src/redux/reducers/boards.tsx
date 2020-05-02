@@ -3,10 +3,7 @@ import {
 } from "../constants/";
 
 const INITIAL_STATE = {
-    "boards": [],
-    "cards": [],
-    "users": [],
-    "lists": []
+    "boards": []
 };
 
 export const boards = (state = INITIAL_STATE, action: any) => {
@@ -14,22 +11,8 @@ export const boards = (state = INITIAL_STATE, action: any) => {
         case FETCH_BOARDS:
             return {
                 ...state,
-                boards: [
-                    ...state.boards,
-                    action.payload.board
-                ],
-                cards: [
-                    ...state.cards,
-                    action.payload.card
-                ],
-                users: [
-                    ...state.users,
-                    action.payload.user
-                ],
-                lists: [
-                    ...state.lists,
-                    action.payload.list
-                ]
+                // @ts-ignore
+                boards: [...state.boards, ...action.payload]
             }
         case DELETE_BOARD:
             return {

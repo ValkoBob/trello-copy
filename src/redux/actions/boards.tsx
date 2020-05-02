@@ -1,13 +1,12 @@
-import axios from 'axios';
 import {
     FETCH_BOARDS, DELETE_BOARD, CREATE_BOARD
 } from "../constants/";
+import API from "../../api";
 
-const apiUrl = 'http://localhost:3000/api1.json';
 
-export const fetchAllBoards = () => {
+export const fetchBoards = () => {
     return (dispatch: any) => {
-        return axios.get(apiUrl)
+        return API.get(`/boards`)
             .then(response => {
                 dispatch({
                     type: FETCH_BOARDS,
@@ -22,11 +21,11 @@ export const fetchAllBoards = () => {
 
 export const deleteBoard = (id: number) => {
     return (dispatch: (arg0: any) => void) => {
-        return axios.delete(`${apiUrl}/board/${id}`)
+        return API.delete(`/boards/${id}`)
             .then(response => {
                 dispatch({
                     type: DELETE_BOARD,
-                    payload: {id}
+                    payload: id
                 })
             })
             .catch(error => {
@@ -36,9 +35,9 @@ export const deleteBoard = (id: number) => {
 };
 
 // @ts-ignore
-export const createBoard = ({id, title}) => {
+export const createBoard = (id, title, background) => {
     return (dispatch: (arg0: any) => void) => {
-        return axios.post(`${apiUrl}/add`, {title, id})
+        return API.post(`/boards`, {id, title, background})
             .then(response => {
                 dispatch({
                     type: CREATE_BOARD,

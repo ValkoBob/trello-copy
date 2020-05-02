@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "vasya",
+      "surname": "vasya",
+      "avatar": "посилання на картинку",
+      "role": "admin|user"
+    }
+  ]
+}

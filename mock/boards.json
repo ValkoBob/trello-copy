@@ -1,0 +1,19 @@
+{
+  "boards": [
+    {
+      "id": 1,
+      "title": "my-cool-board",
+      "_background": ""
+    },
+    {
+      "id": 3,
+      "title": "my-cool-board3",
+      "_background": ""
+    },
+    {
+      "title": "hello",
+      "id": 10,
+      "background": "world"
+    }
+  ]
+}

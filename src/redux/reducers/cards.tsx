@@ -1,7 +1,7 @@
 import {
     CREATE_CARD, DELETE_CARD, RENAME_CARD,
     ADD_USER_TO_CARD, REMOVE_USER_FROM_CARD,
-    EDIT_DESCRIPTION_IN_CARD
+    EDIT_DESCRIPTION_IN_CARD, FETCH_CARDS
 } from "../constants/";
 
 const INITIAL_STATE = {
@@ -9,23 +9,20 @@ const INITIAL_STATE = {
 };
 
 export const cards = (state = INITIAL_STATE, action: any) => {
+    console.log(action.payload);
     switch (action.type) {
+        case FETCH_CARDS:
+            return {
+                ...state,
+                // @ts-ignore
+                cards: [...state.cards, ...action.payload]
+            }
         case CREATE_CARD:
             return {
                 ...state,
                 cards: [
                     ...state.cards,
-                    {
-                        "id": state.cards.length,
-                        "list_id": action.payload.listId,
-                        "board_id": action.payload.boardId,
-                        "title": action.payload.title,
-                        "users": [],
-                        "description": action.payload.description,
-                        "slug": "",
-                        "archived": false,
-                        "created_at": new Date().getTime()
-                    }
+                    action.payload.newCard
                 ]
             }
         case DELETE_CARD:
@@ -98,7 +95,7 @@ export const cards = (state = INITIAL_STATE, action: any) => {
                         // @ts-ignore
                         card.list_id, action.payload.listId,
                         // @ts-ignore
-                        card.board_id, action.payload.boardId)){
+                        card.board_id, action.payload.boardId)) {
                         // @ts-ignore
                         card.description = action.payload.description;
                         return card;
@@ -106,6 +103,8 @@ export const cards = (state = INITIAL_STATE, action: any) => {
                     return card
                 })
             }
+        default:
+            return state;
     }
 }
 

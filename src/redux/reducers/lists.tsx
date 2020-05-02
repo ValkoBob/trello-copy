@@ -40,5 +40,7 @@ export const lists = (state = INITIAL_STATE, action: any) => {
                     return list;
                 })
             }
+        default:
+            return state;
     }
 }

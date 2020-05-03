@@ -9,7 +9,6 @@ const INITIAL_STATE = {
 };
 
 export const cards = (state = INITIAL_STATE, action: any) => {
-    console.log(action.payload);
     switch (action.type) {
         case FETCH_CARDS:
             return {

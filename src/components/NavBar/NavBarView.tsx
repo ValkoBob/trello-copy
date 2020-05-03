@@ -6,15 +6,17 @@ export const NavBarView = () => {
     return (
         <div className="header">
             <div className="header-nav">
-                <Link to="/" style={{textDecoration: 'none'}}>
-                    <a aria-label="Повернутися на домашню сторінку" href="/" className="header-nav-home">
-                    <span color="light" className="header-nav-home__icon icon-home">
+                <Link to="/" style={{textDecoration: 'none'}} className="header-nav-home">
+                    <span color="light" className="header-nav-home__icon">
+                        <i className="fas fa-home">
+                        </i>
                     </span>
-                    </a>
                 </Link>
                 <Link to="/boards" style={{textDecoration: 'none'}}>
                     <button className="header-nav-button">
-                    <span className="header-nav-button__board icon-trello">
+                    <span className="header-nav-button__board">
+                        <i className="fab fa-trello">
+                        </i>
                     </span>
                         <span className="header-nav-button__title">
                         Дошки
@@ -22,8 +24,7 @@ export const NavBarView = () => {
                     </button>
                 </Link>
             </div>
-            <a href="/" className="header-logo">
-                <Link to="/" style={{textDecoration: 'none'}}>
+                <Link to="/" style={{textDecoration: 'none'}} className="header-logo">
                     <div className="header-logo-container">
                     <span className="header-logo-container__icon1">
                     </span>
@@ -33,10 +34,11 @@ export const NavBarView = () => {
                     <div className="header-logo-title">
                     </div>
                 </Link>
-            </a>
             <div className="header-userbar">
                 <button className="header-userbar-newboard">
-                    <span className="header-userbar-newboard__add icon-plus">
+                    <span className="header-userbar-newboard__add">
+                        <i className="fas fa-plus">
+                        </i>
                     </span>
                 </button>
                 <button className="header-userbar-user">

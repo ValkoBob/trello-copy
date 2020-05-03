@@ -7,6 +7,7 @@ const INITIAL_STATE = {
 };
 
 export const boards = (state = INITIAL_STATE, action: any) => {
+    console.log(action.payload)
     switch (action.type) {
         case FETCH_BOARDS:
             return {

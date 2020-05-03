@@ -5,13 +5,14 @@ import API from "../../api";
 
 
 export const fetchBoards = () => {
+    console.log("fetched...");
     return (dispatch: any) => {
-        return API.get(`/boards`)
+        API.get(`/boards`)
             .then(response => {
                 dispatch({
                     type: FETCH_BOARDS,
                     payload: response.data
-                })
+                });
             })
             .catch(error => {
                 throw(error);
@@ -20,7 +21,7 @@ export const fetchBoards = () => {
 };
 
 export const deleteBoard = (id: number) => {
-    return (dispatch: (arg0: any) => void) => {
+    return (dispatch: any) => {
         return API.delete(`/boards/${id}`)
             .then(response => {
                 dispatch({

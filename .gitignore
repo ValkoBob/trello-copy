@@ -24,4 +24,4 @@ yarn-error.log*
 
 # another folders
 /.idea
-/.sass-cache
+.sass-cache/

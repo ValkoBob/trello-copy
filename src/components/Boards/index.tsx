@@ -1,28 +1,38 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {BoardsView} from "./BoardsView";
 import * as actions from "../../redux/actions";
+import {IBoardsProps, IBoardsResponse} from "../../types";
+import {BoardCreator} from "./BoardCreator";
+import {BoardsRender} from "./BoardsRender";
 
-class Boards extends Component {
+class Boards extends Component<IBoardsProps> {
     componentDidMount() {
-        // @ts-ignore
         this.props.fetchBoards()
     }
+
     render() {
-        // @ts-ignore
-        const {boards} = this.props.state.boards;
+        const {boards, createBoard} = this.props;
         return (
             <BoardsView
-                // @ts-ignore
-                boards={boards}
+                boardCreator={
+                    <BoardCreator
+                        length={(boards.length + 1)}
+                        createBoard={createBoard}
+                    />
+                }
+                boardsRender={
+                    <BoardsRender
+                        boards={boards}
+                    />
+                }
             />
         )
     }
 }
 
-// @ts-ignore
-const mapStateToProps = (state) => {
-    return {state};
+const mapStateToProps = ({boards}: { boards: IBoardsResponse[] }) => {
+    return boards;
 }
 
 export default connect(mapStateToProps, actions)(Boards);

@@ -5,6 +5,6 @@ import axios from 'axios';
    json-server mockdata.json --port=3456 will run the api server in port 3456
  */
 export default axios.create({
-    baseURL: `http://localhost:3456`,
+    baseURL: `https://5eb567e8de5849001638b63a.mockapi.io/api/v1/`,
     headers: {'Content-Type': 'application/json'}
 });

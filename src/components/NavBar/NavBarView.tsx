@@ -13,27 +13,25 @@ export const NavBarView = () => {
                     </span>
                 </Link>
                 <Link to="/boards" style={{textDecoration: 'none'}}>
-                    <button className="header-nav-button">
-                    <span className="header-nav-button__board">
+                    <button className="header-nav__button">
+                    <span className="header-nav__icon">
                         <i className="fab fa-trello">
                         </i>
                     </span>
-                        <span className="header-nav-button__title">
+                        <span className="header-nav__title">
                         Дошки
                     </span>
                     </button>
                 </Link>
             </div>
-                <Link to="/" style={{textDecoration: 'none'}} className="header-logo">
-                    <div className="header-logo-container">
-                    <span className="header-logo-container__icon1">
+            <Link to="/" style={{textDecoration: 'none'}} className="header-logo">
+                    <span className="header-logo__icon1">
                     </span>
-                        <span className="header-logo-container__icon2">
+                    <span className="header-logo__icon2">
                     </span>
-                    </div>
-                    <div className="header-logo-title">
-                    </div>
-                </Link>
+                <div className="header-logo-title">
+                </div>
+            </Link>
             <div className="header-userbar">
                 <button className="header-userbar-newboard">
                     <span className="header-userbar-newboard__add">

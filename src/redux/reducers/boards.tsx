@@ -1,13 +1,13 @@
 import {
-    FETCH_BOARDS, DELETE_BOARD, CREATE_BOARD
+    FETCH_BOARDS, DELETE_BOARD, CREATE_BOARD, RENAME_BOARD
 } from "../constants/";
 
 type INITIAL_STATE_TYPE = {
-    boards: Array<{
+    boards: {
         id: number,
         title: string,
         _background: string
-    }>;
+    }[]
 }
 
 const INITIAL_STATE: INITIAL_STATE_TYPE = {
@@ -40,6 +40,17 @@ export const boards = (state = INITIAL_STATE, action: any): INITIAL_STATE_TYPE =
                         "_background": ""
                     }
                 ]
+            }
+        case RENAME_BOARD:
+            return {
+                ...state,
+                boards: state.boards.map((board)=> {
+                    if(board.id === action.payload.id){
+                        board.title = action.payload.title
+                        return board;
+                    }
+                    return board;
+                })
             }
         default:
             return state;

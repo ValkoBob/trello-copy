@@ -1,57 +1,19 @@
 import {
-    FETCH_BOARDS, DELETE_BOARD, CREATE_BOARD
+    FETCH_BOARDS, DELETE_BOARD, CREATE_BOARD, RENAME_BOARD
 } from "../constants/";
-import API from "../../api";
+import {fetchData} from "./data-request";
 
+export const fetchBoards = () =>
+    fetchData("get", `/board`, FETCH_BOARDS, null)
 
-export const fetchBoards = () => {
-    console.log("fetched...");
-    return (dispatch: any) => {
-        API.get(`/board`)
-            .then(response => {
-                dispatch({
-                    type: FETCH_BOARDS,
-                    payload: response.data
-                });
-            })
-            .catch(error => {
-                throw(error);
-            });
-    };
-};
+export const deleteBoard = (id: number) =>
+    fetchData("delete", `/board/${id}`, DELETE_BOARD, id);
 
-export const deleteBoard = (id: number) => {
-    return (dispatch: any) => {
-        return API.delete(`/board/${id}`)
-            .then(response => {
-                dispatch({
-                    type: DELETE_BOARD,
-                    payload: id
-                })
-            })
-            .catch(error => {
-                throw(error);
-            });
-    };
-};
+export const createBoard = (id: number, title: string, background: string) =>
+    fetchData("post", `/board`, CREATE_BOARD, {id, title, background})
 
-
-export const createBoard = (id: number, title: string, background: string) => {
-    return (dispatch: (arg0: any) => void) => {
-        return API.post(`/board`, {id, title, background})
-            .then(response => {
-                dispatch({
-                    type: CREATE_BOARD,
-                    payload: {
-                        id,
-                        title,
-                        background
-                    }
-                })
-            })
-            .catch(error => {
-                throw(error);
-            });
-    };
-};
+export const renameBoard = (boardId: number, newData: {id: number, title: string, background: string}) =>{
+    console.log("renaming board...")
+    return fetchData("put", `/board/${boardId}`, RENAME_BOARD, newData)
+}
 

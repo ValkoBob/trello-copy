@@ -1,6 +1,7 @@
 export const FETCH_BOARDS = "FETCH_BOARDS";
 export const DELETE_BOARD = "DELETE_BOARDS";
 export const CREATE_BOARD = "CREATE_BOARD";
+export const RENAME_BOARD = "RENAME_BOARD";
 
 export const FETCH_USERS = "FETCH_USERS";
 export const ADD_USER = "ADD_USER";
@@ -18,6 +19,10 @@ export const FETCH_LISTS = "FETCH_LISTS";
 export const CREATE_LIST = "CREATE_LIST";
 export const DELETE_LIST = "DELETE_LIST";
 export const RENAME_LIST = "RENAME_LIST";
+
+export const REQUEST_DATA = "REQUEST_DATA";
+export const REQUEST_DATA_SUCCESS = "REQUEST_DATA_SUCCESS";
+export const REQUEST_DATA_ERROR = "REQUEST_DATA_ERROR";
 
 
 

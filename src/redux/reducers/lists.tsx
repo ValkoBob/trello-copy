@@ -1,13 +1,28 @@
 import {
-    CREATE_LIST, DELETE_LIST, RENAME_LIST
+    CREATE_LIST, DELETE_LIST, FETCH_LISTS, RENAME_LIST
 } from "../constants/";
 
-const INITIAL_STATE = {
+type INITIAL_STATE_TYPE = {
+    lists: {
+        "id": number,
+        "board_id": number,
+        "title": string,
+        "position": number,
+        "archived": boolean
+    }[];
+}
+
+const INITIAL_STATE : INITIAL_STATE_TYPE = {
     "lists": []
 };
 
-export const lists = (state = INITIAL_STATE, action: any) => {
+export const lists = (state = INITIAL_STATE, action: any) : INITIAL_STATE_TYPE => {
     switch (action.type) {
+        case FETCH_LISTS:
+            return  {
+                ...state,
+                lists: action.payload
+            }
         case CREATE_LIST:
             return {
                 ...state,
@@ -15,6 +30,7 @@ export const lists = (state = INITIAL_STATE, action: any) => {
                     ...state.lists,
                     {
                         "id": action.payload.id,
+                        "board_id": action.payload.board_id,
                         "title": action.payload.title,
                         "position": action.payload.position,
                         "archived": false

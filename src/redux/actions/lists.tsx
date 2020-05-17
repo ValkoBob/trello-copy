@@ -1,8 +1,24 @@
-import axios from 'axios';
 import {
-    CREATE_LIST, DELETE_LIST, RENAME_LIST
+    CREATE_LIST, DELETE_LIST, FETCH_LISTS, RENAME_LIST
 } from "../constants/";
-const apiUrl = 'http://localhost:3000/api/data-api';
+import API from "../../api";
+
+// tslint:disable-next-line:variable-name
+export const fetchLists = (id: number) => {
+    return (dispatch: (arg0: any) => void) => {
+         API.get(`/list/${{board_id: id}}`)
+            .then(response => {
+                console.log(response)
+                dispatch({
+                    type: FETCH_LISTS,
+                    payload: response.data
+                })
+            })
+            .catch(error => {
+                throw(error);
+            });
+    };
+}
 
 export const createList = (title: string, position: number) => {
     return {
@@ -13,7 +29,7 @@ export const createList = (title: string, position: number) => {
 
 export const deleteList = (id: number) => {
     return (dispatch: (arg0: any) => void) => {
-        return axios.delete(`${apiUrl}${id}`)
+        API.delete(`${id}`)
             .then(response => {
                 dispatch({
                     type: DELETE_LIST,

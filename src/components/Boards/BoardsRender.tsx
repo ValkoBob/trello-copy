@@ -7,7 +7,7 @@ export const BoardsRender = ({boards}: {boards: IBoardsResponse[]}) : any=> {
         boards.map((board: IBoardsResponse) => {
                 return (
                     <li key={board.id} className="boards-list__item">
-                        <Link to={`/b/${board.id}/${board.title}`} style={{textDecoration: 'none'}}
+                        <Link to={`/b/${board.id}/${changeTitle(board.title)}`} style={{textDecoration: 'none'}}
                               className="boards-list__item">
                             <div className="boards-list__tile">
                                 {board.title}
@@ -17,4 +17,9 @@ export const BoardsRender = ({boards}: {boards: IBoardsResponse[]}) : any=> {
                 )
             })
     )
+}
+
+export const changeTitle = (title: string) => {
+    const str = title.replace(/[ @:?#&=\/\\]/g, "-");
+    return str.toLowerCase();
 }

@@ -2,12 +2,14 @@ import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Link} from "react-router-dom";
+import {useHistory} from "react-router";
+import {changeTitle} from "./BoardsRender";
 
 export const BoardCreator = (props: any) => {
-    const {length, createBoard} = props;
+    const {id, createBoard} = props;
     const [show, setShow] = useState(false);
     const [text, setText] = useState('');
+    const history = useHistory();
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -15,15 +17,16 @@ export const BoardCreator = (props: any) => {
     const handleChange = (event: { target: HTMLInputElement; }) => setText(event.target.value);
     const handleCreateNewBoard = () => {
         if (text.length > 0) {
-            createBoard(length, text, "");
+            createBoard(id, text, "");
             handleClose();
+            history.push(`b/${id}/${changeTitle(text)}`)
         }
     }
 
     return (
         <>
             <li className="boards-list__item" onClick={handleShow}>
-                <div className="boards-list__tile">
+                <div className="boards-list__tile boards-creator">
                     <span>Створити нову дошку</span>
                 </div>
             </li>
@@ -31,18 +34,23 @@ export const BoardCreator = (props: any) => {
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        <input type="text" placeholder="Створити дошку" onChange={handleChange}/>
+                        <label htmlFor="creatorInput">Створити нову дошку</label>
                     </Modal.Title>
                 </Modal.Header>
+                <Modal.Body>
+                    <input placeholder="Додати назву дошки"
+                           id="creatorInput"
+                           type="text"
+                           className="boards-creator__input"
+                           onChange={handleChange}/>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Закрити
                     </Button>
-                    <Button variant="primary" onClick={handleCreateNewBoard}>
-                        <Link to={`/b/${length}/${text}`} style={{textDecoration: 'none'}}>
+                    <button className="boards-creator__button" onClick={handleCreateNewBoard}>
                             Створити
-                        </Link>
-                    </Button>
+                    </button>
                 </Modal.Footer>
             </Modal>
         </>

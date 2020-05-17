@@ -8,7 +8,7 @@ export const BoardsView = (props: any) => {
             <nav className="navbar">
                 <ul className="navbar navbar-list">
                     <li className="navbar-list navbar-list__item">
-                        <Link to="/boards" className="navbar-list__link">
+                        <Link to="/boards" style={{textDecoration: 'none'}} className="navbar-list__link">
                             <span className="navbar-list__logo">
                                 <i className="fab fa-trello">
                                 </i>

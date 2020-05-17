@@ -111,7 +111,7 @@ ol, ul {
       cursor: pointer;
     }
     &__tile {
-      padding: 25px;
+      padding: 10px;
       border-radius: 3px;
       border: none;
       height: 80px;
@@ -119,9 +119,9 @@ ol, ul {
       text-decoration: none;
       font-weight: 400;
       line-height: 20px;
-      text-align: center;
-      background-color: rgba(9,30,66,.04);
-      color: #172b4d;
+      text-align: left;
+      background-color: #e4f0f6;
+      color: #0079bf;
       background-size: cover;
       background-position: 50%;
       position: relative;
@@ -131,22 +131,50 @@ ol, ul {
       overflow: hidden;
     }
   }
-}
-
-@media only screen and (max-width: 1280px) and (min-width: 901px) {
-  .boards-list__item {
-    width: 25%;
-  }
-}
-
-@media only screen and (max-width: 900px) and (min-width: 751px),
-only screen and (max-width: 1280px) and (min-width: 901px) {
-  .boards-list__item {
-    width: 33%;
+  &-creator {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(9,30,66,.04);
+    color: #172b4d;
+    &__button {
+      padding: .450rem .75rem;
+      border-radius: .25rem;
+      background-color: #0079bf;
+      color: white;
+      font-weight: 400;
+      font-size: 1rem;
+    }
+    &__input {
+      padding: 5px 12px;
+      border-radius: 3px;
+      border: 1px solid black;
+      min-height: 0;
+      min-width: 100px;
+      box-shadow: none;
+      background: transparent;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      outline: 0;
+    }
   }
 }
 
 p {
   margin: 0 0 8px;
+}
+
+@media only screen and (max-width: 1280px) {
+  .boards-list__item {
+    width: 28%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .boards-list__item {
+    width: 37%;
+  }
 }
 

@@ -7,7 +7,7 @@ export const fetchBoards = () =>
     fetchData("get", `/board`, FETCH_BOARDS, null)
 
 export const deleteBoard = (id: number) =>
-    fetchData("delete", `/board/${id}`, DELETE_BOARD, id);
+    fetchData("delete", `/board/${id}`, DELETE_BOARD, null);
 
 export const createBoard = (id: number, title: string, background: string) =>
     fetchData("post", `/board`, CREATE_BOARD, {id, title, background})

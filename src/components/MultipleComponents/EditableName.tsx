@@ -11,7 +11,7 @@ type EditableNameType = {
 export const EditableName = ({name, id, editText, editClass, className}: EditableNameType) => {
     const [isDisabled, setIsDisabled] = useState(true);
     const [isSelected, setIsSelected] = useState(false);
-    const [text, setText] = useState('');
+    const [text, setText] = useState(name);
     const handleClick = (e: any) => {
         setIsDisabled(false);
         if(!isSelected) {
@@ -30,7 +30,6 @@ export const EditableName = ({name, id, editText, editClass, className}: Editabl
     const handleSubmit = () => {
         if(text.length !== 0){
             editText(id, text)
-            setText('')
         }
         setIsDisabled(true);
         setIsSelected(true);
@@ -46,7 +45,7 @@ export const EditableName = ({name, id, editText, editClass, className}: Editabl
                    onBlur={handleSubmit}
                    onChange={handleChange}
                    onKeyDown={handleKeyDown}
-                   placeholder={name}
+                   value={text}
                    readOnly={isDisabled}/>
         </div>
     )

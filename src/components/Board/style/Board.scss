@@ -283,8 +283,42 @@ $color-button_hover: silver;
       padding: 12px 6px 12px 12px;
       width: 100%;
       height: 100%;
+
+    }
+    &-navigation {
+      flex: 1 auto;
+      width: 100%;
+      list-style: none;
+      padding: 0;
+      margin: 4px 0;
+      &__item {
+        padding: 10px;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 500;
+        list-style: none;
+        cursor: pointer;
+        &:hover {
+          background-color: $color-button;
+        }
+      }
+      &__delete {
+        padding: .450rem .75rem;
+        border-radius: .25rem;
+        background-color: #cf513d;;
+        color: white;
+        font-weight: 400;
+        font-size: 1rem;
+        &:hover {
+          background-color: #eb5a46;
+        }
+      }
     }
   }
+}
+
+.fa-trash-alt {
+  padding: 0 10px 0 30px;
 }
 
 .hide {

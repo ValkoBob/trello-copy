@@ -1,9 +1,11 @@
 import React from 'react';
+import BoardDeleter from "./BoardDeleter";
 
 type BoardMenuType = {
     isVisibleMenu: () => void,
     isVisible?: boolean
 }
+
 const BoardMenu = ({isVisibleMenu, isVisible} : BoardMenuType) => {
     return(
         <div className={`board-menu ${isVisible ? 'show' : 'hide'}`}>
@@ -13,6 +15,9 @@ const BoardMenu = ({isVisibleMenu, isVisible} : BoardMenuType) => {
                 <hr className="board-menu-divider"/>
             </div>
             <div className="board-menu-content">
+                <ul className="board-menu-navigation">
+                    <BoardDeleter/>
+                </ul>
             </div>
         </div>
     )

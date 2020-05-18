@@ -35,18 +35,21 @@ const Board = (props: any): any => {
     }
 
     return (
-            <BoardView
-                editableName={
-                    <EditableName
-                        name={objectWithBoard.title}
-                        id={id_board}
-                        editText={editText}
-                        editClass={editClass}
-                        className={"board-name"}
-                    />}
-                boardMenu={<BoardMenu isVisibleMenu={isVisibleMenu} isVisible={isVisible}/>}
-                boardMenuButton={<BoardMenuButton isVisibleMenu={isVisibleMenu}/>}
-            />
+        <BoardView
+            editableName={
+                <EditableName
+                    name={objectWithBoard.title}
+                    id={id_board}
+                    editText={editText}
+                    editClass={editClass}
+                    className={"board-name"}
+                />}
+            boardMenu={<BoardMenu
+                isVisibleMenu={isVisibleMenu}
+                isVisible={isVisible}
+            />}
+            boardMenuButton={<BoardMenuButton isVisibleMenu={isVisibleMenu}/>}
+        />
     )
 }
 

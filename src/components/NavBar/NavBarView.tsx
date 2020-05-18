@@ -2,7 +2,7 @@ import React from 'react';
 import './../NavBar/style/NavBar.scss';
 import {Link} from "react-router-dom";
 
-export const NavBarView = () => {
+export const NavBarView = (props: any) => {
     return (
         <div className="header">
             <div className="header-nav">
@@ -33,12 +33,8 @@ export const NavBarView = () => {
                 </div>
             </Link>
             <div className="header-userbar">
-                <button className="header-userbar-newboard">
-                    <span className="header-userbar-newboard__add">
-                        <i className="fas fa-plus">
-                        </i>
-                    </span>
-                </button>
+                {props.newBoardView}
+                {props.boardCreator}
                 <button className="header-userbar-user">
                     <div className="header-userbar-user__content" title="user_name">
                         <span className="header-userbar-user__avatar"

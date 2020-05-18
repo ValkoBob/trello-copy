@@ -13,7 +13,7 @@ export const requestDataSuccess = () => {
     }
 }
 
-export const requestDataError = (error: string)=> {
+export const requestDataError = (error: string) => {
     return {
         type: REQUEST_DATA_ERROR,
         payload: error
@@ -40,6 +40,7 @@ export const fetchData = (methodType: Method, urlAddress: string, typeConstant: 
             .then(response => {
                 requestDataSuccess()
                 console.log("fetch success!")
+                console.log(response.data)
                 dispatch({
                     type: typeConstant,
                     payload: inputData ? inputData : response.data

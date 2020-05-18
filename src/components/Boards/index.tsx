@@ -2,56 +2,59 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {BoardsView} from "./BoardsView";
 import * as actions from "../../redux/actions";
-import {IBoardsProps, IBoardsResponse} from "../../types";
-import {BoardCreator} from "./BoardCreator";
+import {IState} from "../../types";
+import BoardCreator from "./BoardCreator";
 import {BoardsRender} from "./BoardsRender";
+import {BoardCreatorView} from "./BoardCreatorView";
+import {Spinner} from "../MultipleComponents/Spinner";
 
-class Boards extends Component<IBoardsProps> {
+class Boards extends Component<any> {
     state = {
-        id: 1
+        isShowCreator: false
     }
     componentDidMount() {
         console.log("component mount...")
         this.props.fetchBoards()
     }
 
-    componentDidUpdate(prevProps: Readonly<IBoardsProps>, prevState: Readonly<{}>, snapshot?: any) {
-        if (prevProps!== this.props) {
-            this.setIdBoards()
-        }
-    }
-
-    setIdBoards = () => {
-        const {boards} = this.props;
-        if(boards.length > 0){
-            const id = (+boards[boards.length - 1].id) + 1;
-            this.setState({id})
-        }
+    handleShowCreator = () => {
+        this.setState({
+            isShowCreator: !this.state.isShowCreator
+            })
     }
 
     render() {
-        const {boards, createBoard} = this.props;
-        const {id} = this.state;
-        return (
-            <BoardsView
-                boardCreator={
-                    <BoardCreator
-                        id={id}
-                        createBoard={createBoard}
-                    />
-                }
-                boardsRender={
-                    <BoardsRender
-                        boards={boards}
-                    />
-                }
-            />
-        )
+        const {boards, loading, error} = this.props;
+        const {isShowCreator} = this.state;
+        if(loading){
+            return (
+                <Spinner />
+            )
+        } else {
+            return (
+                <BoardsView
+                    boardCreator={
+                        <BoardCreator
+                            isShow={isShowCreator}
+                            boardCreatorView={<BoardCreatorView handleShow={this.handleShowCreator}/>}
+                            handleShow={this.handleShowCreator}
+                        />
+                    }
+                    boardsRender={
+                        <BoardsRender
+                            boards={boards}
+                        />
+                    }
+                />
+            )
+        }
     }
 }
 
-const mapStateToProps = ({boards}: { boards: IBoardsResponse[] }) => {
-    return boards;
+const mapStateToProps = (state: IState) => {
+    const {boards} = state.boards;
+    const {loading, error} = state.dataRequest
+    return {boards, loading, error};
 }
 
 export default connect(mapStateToProps, actions)(Boards);

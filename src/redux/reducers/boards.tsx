@@ -15,7 +15,6 @@ const INITIAL_STATE: INITIAL_STATE_TYPE = {
 };
 
 export const boards = (state = INITIAL_STATE, action: any): INITIAL_STATE_TYPE => {
-    console.log(action.payload)
     switch (action.type) {
         case FETCH_BOARDS:
             return {
@@ -34,11 +33,7 @@ export const boards = (state = INITIAL_STATE, action: any): INITIAL_STATE_TYPE =
                 ...state,
                 boards: [
                     ...state.boards,
-                    {
-                        "id": action.payload.id,
-                        "title": action.payload.title,
-                        "_background": ""
-                    }
+                    action.payload
                 ]
             }
         case RENAME_BOARD:

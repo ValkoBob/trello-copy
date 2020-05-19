@@ -2,8 +2,8 @@ import React, {useState} from "react";
 
 type EditableNameType = {
     name: string,
-    id: number,
-    editText: (id: number, text: string) => void,
+    id: string,
+    editText: (id: string, text: string) => void,
     editClass: (className: string) => string,
     className: string
 }

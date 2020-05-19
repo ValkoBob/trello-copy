@@ -28,13 +28,7 @@ export const lists = (state = INITIAL_STATE, action: any) : INITIAL_STATE_TYPE =
                 ...state,
                 lists: [
                     ...state.lists,
-                    {
-                        "id": action.payload.id,
-                        "board_id": action.payload.board_id,
-                        "title": action.payload.title,
-                        "position": action.payload.position,
-                        "archived": false
-                    }
+                    action.payload
                 ]
             }
         case DELETE_LIST:

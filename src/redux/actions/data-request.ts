@@ -43,7 +43,7 @@ export const fetchData = (methodType: Method, urlAddress: string, typeConstant: 
                 console.log(response.data)
                 dispatch({
                     type: typeConstant,
-                    payload: inputData ? inputData : response.data
+                    payload: response.data
                 });
             })
             .catch((error: string) => {

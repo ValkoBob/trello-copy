@@ -1,50 +1,18 @@
 import {
     CREATE_LIST, DELETE_LIST, FETCH_LISTS, RENAME_LIST
 } from "../constants/";
-import API from "../../api";
+import {fetchData} from "./data-request";
+import {IListsResponse} from "../../types";
 
-// tslint:disable-next-line:variable-name
-export const fetchLists = (id: number) => {
-    return (dispatch: (arg0: any) => void) => {
-         API.get(`/list/${{board_id: id}}`)
-            .then(response => {
-                console.log(response)
-                dispatch({
-                    type: FETCH_LISTS,
-                    payload: response.data
-                })
-            })
-            .catch(error => {
-                throw(error);
-            });
-    };
-}
+export const fetchLists = () =>
+    fetchData("get", `/list`, FETCH_LISTS, null)
 
-export const createList = (title: string, position: number) => {
-    return {
-        type: CREATE_LIST,
-        payload: {title, position}
-    }
-};
+export const createList = (boardId: number, title: string, position: number, archived: boolean) =>
+    fetchData("post", `/list`, CREATE_LIST, {boardId, title, position, archived})
 
 export const deleteList = (id: number) => {
-    return (dispatch: (arg0: any) => void) => {
-        API.delete(`${id}`)
-            .then(response => {
-                dispatch({
-                    type: DELETE_LIST,
-                    payload: {id}
-                })
-            })
-            .catch(error => {
-                throw(error);
-            });
-    };
+    fetchData("delete", `/list/${id}`, DELETE_LIST, null);
 };
 
-export const renameList = (newTitle: string, id: number) => {
-    return {
-        type: RENAME_LIST,
-        payload: {newTitle, id}
-    }
-}
+export const renameList = (listId: number, newData: IListsResponse) =>
+    fetchData("put", `/list/${listId}`, RENAME_LIST, newData)

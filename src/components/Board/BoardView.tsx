@@ -1,6 +1,6 @@
 import React from 'react';
 import './../Board/style/Board.scss';
-import {Lists} from "../Lists";
+import Lists from "../Lists";
 
 interface Props {
     editableName: JSX.Element[] | JSX.Element,

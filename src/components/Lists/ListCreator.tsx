@@ -1,14 +1,15 @@
 import React, {useState} from "react";
+
 type PropsType = {
     addListName: (text: string) => void
 }
 export const ListCreator = ({addListName}: PropsType) => {
     const [isActive, setActiveCreator] = useState(false)
     const [nameList, setNameList] = useState('')
-    const handleBlur = () => {
+    /*const handleBlur = () => {
         setActiveCreator(false)
         setNameList('')
-    }
+    }*/
     const handleChange = (e: { target: HTMLInputElement; }) => {
         setNameList(e.target.value)
     }
@@ -18,11 +19,12 @@ export const ListCreator = ({addListName}: PropsType) => {
         }
     }
     const handleSubmit = () => {
-        if(nameList.length !== 0){
+        console.log("here")
+        if (nameList.length > 0) {
             addListName(nameList)
             setNameList('')
+            setActiveCreator(false)
         }
-        setActiveCreator(false)
     }
     return (
         <div className="board-creator">
@@ -35,22 +37,20 @@ export const ListCreator = ({addListName}: PropsType) => {
             <div className={`board-creator-form ${isActive ? "show" : "hide"}`}>
                 <input type="text"
                        placeholder="Увести назву списку..."
+                       value={nameList}
                        className="board-creator-form__input"
                        maxLength={512}
-                       autoComplete={"off"}
-                       onBlur={handleBlur}
                        onChange={handleChange}
                        onKeyDown={handleKeyDown}
                 />
                 <div className="board-creator-form__footer">
-                    <input type="submit"
-                           value="Додати список"
-                           className="board-creator-form__footer-input"
-                           onClick={handleSubmit}
-                    />
-                    <span onClick={() =>setActiveCreator(false)}
+                    <div onClick={handleSubmit}
+                         className="board-creator-form__footer-input"
+                    >Додати список
+                    </div>
+                    <div onClick={() => setActiveCreator(false)}
                           className="board-creator-form__close"
-                    >x</span>
+                    >x</div>
                 </div>
             </div>
         </div>

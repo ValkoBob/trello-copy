@@ -14,9 +14,9 @@ const Board = (props: any): any => {
     const objectWithBoard = boards.find((object: any) => object.id === id_board)
     useEffect(() => {
         props.fetchBoards();
-        props.fetchLists(id_board);
-    }, [id_board])
-    const editText = (id: number, newTitle: string) => {
+        props.fetchLists();
+    }, [])
+    const editText = (id: string, newTitle: string) => {
         const newBoardTitle = objectWithBoard;
         newBoardTitle.title = newTitle;
         props.renameBoard(id, newBoardTitle);

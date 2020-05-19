@@ -12,8 +12,6 @@ export const deleteBoard = (id: number) =>
 export const createBoard = (id: number, title: string, background: string) =>
     fetchData("post", `/board`, CREATE_BOARD, {id, title, background})
 
-export const renameBoard = (boardId: number, newData: {id: number, title: string, background: string}) =>{
-    console.log("renaming board...")
-    return fetchData("put", `/board/${boardId}`, RENAME_BOARD, newData)
-}
+export const renameBoard = (boardId: number, newData: {id: number, title: string, background: string}) =>
+    fetchData("put", `/board/${boardId}`, RENAME_BOARD, newData)
 

@@ -13,7 +13,6 @@ class Boards extends Component<any> {
         isShowCreator: false
     }
     componentDidMount() {
-        console.log("component mount...")
         this.props.fetchBoards()
     }
 

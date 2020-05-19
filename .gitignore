@@ -25,3 +25,6 @@ yarn-error.log*
 # another folders
 /.idea
 .sass-cache/
+
+#debugging elements
+*.log

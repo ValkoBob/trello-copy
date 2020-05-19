@@ -39,8 +39,6 @@ export const fetchData = (methodType: Method, urlAddress: string, typeConstant: 
         API({method: methodType, url: urlAddress, data: inputData})
             .then(response => {
                 requestDataSuccess()
-                console.log("fetch success!")
-                console.log(response.data)
                 dispatch({
                     type: typeConstant,
                     payload: response.data

@@ -6,10 +6,10 @@ type PropsType = {
 export const ListCreator = ({addListName}: PropsType) => {
     const [isActive, setActiveCreator] = useState(false)
     const [nameList, setNameList] = useState('')
-    /*const handleBlur = () => {
+    const handleBlur = () => {
         setActiveCreator(false)
         setNameList('')
-    }*/
+    }
     const handleChange = (e: { target: HTMLInputElement; }) => {
         setNameList(e.target.value)
     }
@@ -19,7 +19,6 @@ export const ListCreator = ({addListName}: PropsType) => {
         }
     }
     const handleSubmit = () => {
-        console.log("here")
         if (nameList.length > 0) {
             addListName(nameList)
             setNameList('')
@@ -34,7 +33,7 @@ export const ListCreator = ({addListName}: PropsType) => {
                 <span className="board-creator__icon">+</span>
                 <span className="board-creator__title">Додати список</span>
             </div>
-            <div className={`board-creator-form ${isActive ? "show" : "hide"}`}>
+            <div onBlur={handleBlur} className={`board-creator-form ${isActive ? "show" : "hide"}`}>
                 <input type="text"
                        placeholder="Увести назву списку..."
                        value={nameList}

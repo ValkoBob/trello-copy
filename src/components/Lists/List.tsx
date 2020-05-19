@@ -3,12 +3,11 @@ import {EditableName} from "../MultipleComponents/EditableName";
 
 export const List = (props: any) => {
     const {lists, boardId, editText, editClass} = props;
-    console.log(boardId)
     return (
         lists.map((list: any) => {
             if (list.boardId === boardId) {
                 return (
-                    <div className="board-content-list__item">
+                    <div key={list.id} className="board-content-list__item">
                         <div className="board-list-header">
                             <EditableName
                                 name={list.title}
@@ -31,6 +30,4 @@ export const List = (props: any) => {
             }
         })
     )
-    return (<div>
-    </div>)
 }

@@ -1,83 +1,32 @@
 import {
     CREATE_CARD, DELETE_CARD, RENAME_CARD,
     ADD_USER_TO_CARD, REMOVE_USER_FROM_CARD,
-    EDIT_DESCRIPTION_IN_CARD, FETCH_CARDS
+    EDIT_DESCRIPTION_IN_CARD, FETCH_CARDS, FETCH_BOARDS, CREATE_BOARD, RENAME_BOARD, DELETE_BOARD
 } from "../constants/";
-import API from "../../api";
+import {fetchData} from "./data-request";
 
-export const fetchCards = () => {
-    return (dispatch: any) => {
-        return API.get(`/cards`)
-            .then((response: { data: any; }) => {
-                dispatch({
-                    type: FETCH_CARDS,
-                    payload: response.data
-                })
-            })
-            // @ts-ignore
-            .catch(error => {
-                throw(error);
-            });
-    };
-}
 
-/*{
-    "id": id,
-    "list_id": listId,
-    "board_id": boardId,
-    "title": title,
-    "users": [],
-    "description": description,
-    "slug": "",
-    "archived": false,
-    "created_at": new Date().getTime()
-}*/
+export const fetchCards = () =>
+    fetchData("get", `/card`, FETCH_CARDS, null)
 
-export const createCard = (newCard: any) => {
-    return (dispatch: (arg0: any) => void) => {
-        return API.post(`/cards`,newCard )
-            .then(response => {
-                dispatch({
-                    type: CREATE_CARD,
-                    payload: newCard
-                })
-            })
-            .catch(error => {
-                throw(error);
-            });
-    };
-};
+export const createCard = (listId: number,
+                           boardId: number,
+                           title: string,
+                           archived: boolean) =>
+    fetchData("post", `/card`, CREATE_CARD, {listId, boardId, title, archived})
 
-export const renameCard = (id: number, renamedCard: any) => {
-    return (dispatch: (arg0: any) => void) => {
-        return API.put(`/cards/${id}`,renamedCard )
-            .then(response => {
-                dispatch({
-                    type: RENAME_CARD,
-                    payload: renamedCard
-                })
-            })
-            .catch(error => {
-                throw(error);
-            });
-    };
-}
+export const renameCard = (cardId: number,
+                           newData: {
+                               id: number,
+                               title: string,
+                               boardId: number,
+                               listId: number
+                           }) =>
+    fetchData("put", `/card/${cardId}`, RENAME_CARD, newData)
 
-export const deleteCard = (cardId: number, listId: number,
-                           boardId: number) => {
-    return (dispatch: (arg0: any) => void) => {
-        return API.delete(`/cards/${cardId}`)
-            .then(response => {
-                dispatch({
-                    type: DELETE_CARD,
-                    payload: {cardId, listId, boardId}
-                })
-            })
-            .catch(error => {
-                throw(error);
-            });
-    };
-};
+export const deleteCard = (id: number) =>
+    fetchData("delete", `/board/${id}`, DELETE_CARD, null);
+
 
 export const addUserToCard = (cardId: number, userId: number,
                               listId: number, boardId: number) => {

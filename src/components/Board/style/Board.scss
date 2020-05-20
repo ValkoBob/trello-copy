@@ -167,6 +167,7 @@ $color-button_hover: silver;
     padding-bottom: 8px;
     top: 60px;
     display: flex;
+    align-items: baseline;
   }
   &-creator {
     user-select: none;
@@ -202,9 +203,6 @@ $color-button_hover: silver;
     }
   }
   &-menu {
-    transition-property: transform,width;
-    transition-duration: .1s;
-    transition-timing-function: ease-in;
     width: 339px;
     z-index: 5;
     bottom: 0;

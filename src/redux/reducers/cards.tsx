@@ -4,56 +4,60 @@ import {
     EDIT_DESCRIPTION_IN_CARD, FETCH_CARDS
 } from "../constants/";
 
-const INITIAL_STATE = {
+type INITIAL_STATE_TYPE = {
+    cards: {
+        "id": number,
+        "listId": number,
+        "boardId": number,
+        "title": string,
+        "description": string,
+        "slug": string,
+        "archived": number
+    }[];
+}
+
+const INITIAL_STATE: INITIAL_STATE_TYPE = {
     "cards": []
 };
 
-export const cards = (state = INITIAL_STATE, action: any) => {
+export const cards = (state = INITIAL_STATE, action: any): INITIAL_STATE_TYPE => {
     switch (action.type) {
         case FETCH_CARDS:
             return {
                 ...state,
-                // @ts-ignore
-                cards: [...state.cards, ...action.payload]
+                cards: action.payload
             }
         case CREATE_CARD:
             return {
                 ...state,
                 cards: [
                     ...state.cards,
-                    action.payload.newCard
+                    action.payload
                 ]
             }
         case DELETE_CARD:
             return {
                 ...state,
                 cards: state.cards.filter((card) => {
-                    // @ts-ignore
-                    return !(checkIds(card.id, action.payload.cardId,
-                        // @ts-ignore
-                        card.list_id, action.payload.listId,
-                        // @ts-ignore
-                        card.board_id, action.payload.boardId))
+                    return !(checkIds(card.id, action.payload.id,
+                        card.listId, action.payload.listId,
+                        card.boardId, action.payload.boardId))
                 })
             }
         case RENAME_CARD:
             return {
                 ...state,
                 cards: state.cards.map((card) => {
-                    // @ts-ignore
                     if (checkIds(card.id, action.payload.id,
-                        // @ts-ignore
-                        card.list_id, action.payload.listId,
-                        // @ts-ignore
-                        card.board_id, action.payload.boardId)) {
-                        // @ts-ignore
+                        card.listId, action.payload.listId,
+                        card.boardId, action.payload.boardId)) {
                         card.title = action.payload.title;
                         return card;
                     }
                     return card;
                 })
             }
-        case ADD_USER_TO_CARD:
+        /*case ADD_USER_TO_CARD:
             return {
                 ...state,
                 cards: state.cards.map((card) => {
@@ -84,18 +88,14 @@ export const cards = (state = INITIAL_STATE, action: any) => {
                     }
                     return card
                 })
-            }
+            }*/
         case EDIT_DESCRIPTION_IN_CARD:
             return {
                 ...state,
-                card: state.cards.map((card) => {
-                    // @ts-ignore
-                    if (checkIds(card.id, action.payload.cardId,
-                        // @ts-ignore
-                        card.list_id, action.payload.listId,
-                        // @ts-ignore
-                        card.board_id, action.payload.boardId)) {
-                        // @ts-ignore
+                cards: state.cards.map((card) => {
+                    if (checkIds(card.id, action.payload.id,
+                        card.listId, action.payload.listId,
+                        card.boardId, action.payload.boardId)) {
                         card.description = action.payload.description;
                         return card;
                     }

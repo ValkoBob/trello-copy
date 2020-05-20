@@ -28,8 +28,10 @@ export const EditableName = ({name, id, editText, editClass, className}: Editabl
         setText(e.target.value)
     }
     const handleSubmit = () => {
-        if(text.length !== 0){
+        if(text.length > 0){
             editText(id, text)
+        } else {
+            setText(name)
         }
         setIsDisabled(true);
         setIsSelected(true);

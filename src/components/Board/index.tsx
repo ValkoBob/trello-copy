@@ -15,6 +15,7 @@ const Board = (props: any): any => {
     useEffect(() => {
         props.fetchBoards();
         props.fetchLists();
+        props.fetchCards();
     }, [])
     const editText = (id: string, newTitle: string) => {
         const newBoardTitle = objectWithBoard;

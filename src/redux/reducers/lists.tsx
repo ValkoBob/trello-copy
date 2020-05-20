@@ -34,16 +34,13 @@ export const lists = (state = INITIAL_STATE, action: any) : INITIAL_STATE_TYPE =
         case DELETE_LIST:
             return {
                 ...state,
-                // @ts-ignore
                 lists: state.lists.filter(list => list.id !== action.payload.id)
             }
         case RENAME_LIST:
             return {
                 ...state,
                 lists: state.lists.map((list) => {
-                    // @ts-ignore
                     if (list.id === action.payload.id) {
-                        // @ts-ignore
                         list.title = action.payload.newTitle;
                         return list;
                     }

@@ -1,5 +1,6 @@
 import React from "react";
 import {EditableName} from "../MultipleComponents/EditableName";
+import Cards from "../Cards";
 
 export const List = (props: any) => {
     const {lists, boardId, editText, editClass} = props;
@@ -18,13 +19,7 @@ export const List = (props: any) => {
                                 ...
                             </div>
                         </div>
-                        <div className="board-list-add">
-                            <div className="board-list-add__card">
-                                <span className="board-list-add__icon-add">+</span>
-                                <span className="board-list-add__title">Додати картку</span>
-                                <span className="board-list-add__title-another hide">Додати картку</span>
-                            </div>
-                        </div>
+                        <Cards listId={list.id} boardId={boardId}/>
                     </div>
                 )
             }

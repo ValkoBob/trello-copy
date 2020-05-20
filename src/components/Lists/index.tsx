@@ -7,7 +7,6 @@ import * as actions from "../../redux/actions";
 import {ListCreator} from "./ListCreator";
 import {useParams} from "react-router";
 import {List} from "./List";
-import {EditableName} from "../MultipleComponents/EditableName";
 
 const Lists = (props: any) => {
     const {id_board}: any = useParams();

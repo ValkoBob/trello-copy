@@ -1,31 +1,31 @@
 export interface IState {
-    boards: {
-        boards: {
+    boards: { boards: {
         id: number,
         title: string,
         _background: string
     }[]}
-    lists: {lists: {
+    lists: { lists: {
         "id": number,
         "board_id": number,
         "title": string,
         "position": number,
         "archived": boolean
     }[]},
-    cards: {cards: []},
+    cards: {cards: {
+            "id": number,
+            "list_id": number,
+            "board_id": number,
+            "title": string,
+            "users": number[],
+            "description": string,
+            "slug": string,
+            "archived": number
+        }[]},
     users: {users: []},
     dataRequest: {
         loading: boolean,
         error: null
     }
-}
-
-export interface IBoardsProps {
-    fetchBoards(): void,
-
-    createBoard(id: number, title: string, background: string): void,
-
-    boards: IBoardsResponse[]
 }
 
 export interface IBoardsResponse {
@@ -40,4 +40,14 @@ export interface IListsResponse {
     "title": string,
     "position": number,
     "archived": boolean
+}
+
+export interface ICardsResponse {
+    "id": number,
+    "listId": number,
+    "boardId": number,
+    "title": string,
+    "description": string,
+    "slug": string,
+    "archived": number
 }

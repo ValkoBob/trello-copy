@@ -39,7 +39,7 @@ export const cards = (state = INITIAL_STATE, action: any): INITIAL_STATE_TYPE =>
             return {
                 ...state,
                 cards: state.cards.filter((card) => {
-                    return !(checkIds(card.id, action.payload.id,
+                    return !(checkIdsCards(card.id, action.payload.id,
                         card.listId, action.payload.listId,
                         card.boardId, action.payload.boardId))
                 })
@@ -48,7 +48,7 @@ export const cards = (state = INITIAL_STATE, action: any): INITIAL_STATE_TYPE =>
             return {
                 ...state,
                 cards: state.cards.map((card) => {
-                    if (checkIds(card.id, action.payload.id,
+                    if (checkIdsCards(card.id, action.payload.id,
                         card.listId, action.payload.listId,
                         card.boardId, action.payload.boardId)) {
                         card.title = action.payload.title;
@@ -93,7 +93,7 @@ export const cards = (state = INITIAL_STATE, action: any): INITIAL_STATE_TYPE =>
             return {
                 ...state,
                 cards: state.cards.map((card) => {
-                    if (checkIds(card.id, action.payload.id,
+                    if (checkIdsCards(card.id, action.payload.id,
                         card.listId, action.payload.listId,
                         card.boardId, action.payload.boardId)) {
                         card.description = action.payload.description;
@@ -107,8 +107,8 @@ export const cards = (state = INITIAL_STATE, action: any): INITIAL_STATE_TYPE =>
     }
 }
 
-const checkIds = (cardId1: number, cardId2: number,
+const checkIdsCards = (cardId1: number, cardId2: number,
                   listId1: number, listId2: number,
                   boardId1: number, boardId2: number) => {
-    return (cardId1 === listId1 && cardId2 === listId2 && boardId1 === boardId2)
+    return (cardId1 === cardId2  && listId1=== listId2 && boardId1 === boardId2)
 }

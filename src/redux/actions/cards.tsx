@@ -1,7 +1,7 @@
 import {
     CREATE_CARD, DELETE_CARD, RENAME_CARD,
     ADD_USER_TO_CARD, REMOVE_USER_FROM_CARD,
-    EDIT_DESCRIPTION_IN_CARD, FETCH_CARDS, FETCH_BOARDS, CREATE_BOARD, RENAME_BOARD, DELETE_BOARD
+    EDIT_DESCRIPTION_IN_CARD, FETCH_CARDS
 } from "../constants/";
 import {fetchData} from "./data-request";
 
@@ -12,8 +12,8 @@ export const fetchCards = () =>
 export const createCard = (listId: number,
                            boardId: number,
                            title: string,
-                           archived: boolean) =>
-    fetchData("post", `/card`, CREATE_CARD, {listId, boardId, title, archived})
+                           archived: boolean, position: number) =>
+    fetchData("post", `/card`, CREATE_CARD, {listId, boardId, title, archived, position})
 
 export const renameCard = (cardId: number,
                            newData: {

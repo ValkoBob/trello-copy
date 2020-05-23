@@ -1,0 +1,70 @@
+.listmenu {
+  &-header {
+    height: 40px;
+    position: relative;
+    margin-bottom: 8px;
+    text-align: center;
+    &__title {
+      text-align: center;
+      box-sizing: border-box;
+      color: #5e6c84;
+      display: block;
+      line-height: 40px;
+      border-bottom: 1px solid rgba(9,30,66,.13);
+      margin: 0 12px;
+      overflow: hidden;
+      padding: 0 32px;
+      position: relative;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      z-index: 1;
+    }
+    &__close {
+      font-style: normal;
+      text-align: center;
+      text-decoration: none;
+      vertical-align: bottom;
+      height: 40px;
+      font-size: 24px;
+      line-height: 20px;
+      width: 40px;
+      color: #6b778c;
+      padding: 10px 12px 10px 8px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 2;
+      border: none;
+    }
+  }
+  &-content {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0 12px 12px;
+    max-height: 646px;
+    &-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      &__item {
+        list-style: none;
+        background-color: transparent;
+        cursor: pointer;
+        display: block;
+        padding: 6px 12px;
+        position: relative;
+        margin: 0 -12px;
+        text-decoration: none;
+      }
+    }
+  }
+  & hr {
+    box-sizing: content-box;
+    background-color: rgba(9,30,66,.13);
+    border: 0;
+    height: 1px;
+    padding: 0;
+    width: 100%;
+    margin: 8px 0;
+  }
+}

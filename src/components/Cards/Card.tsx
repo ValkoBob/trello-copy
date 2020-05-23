@@ -1,18 +1,17 @@
 import React from "react";
-import {ICardsResponse} from "../../types";
 
 
 export const Card = (props: any) => {
-    const{cards, boardId, listId} = props
-    return(
-        cards.map((card: any) => {
-            if(card.boardId === boardId && card.listId === listId){
-                return(
-                    <div key={card.id} className="card-list__item">
-                        {card.title}
-                    </div>
-                )
-            }
-        })
+    const {id, title, onDragStart} = props
+    return (
+        <div
+            draggable={true}
+            key={id}
+            id={id}
+            className="card-list__item"
+            onDragStart={(e)=>onDragStart(e, id)}
+        >
+            {title}
+        </div>
     )
 }

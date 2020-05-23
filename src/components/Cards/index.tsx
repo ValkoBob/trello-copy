@@ -2,21 +2,32 @@ import React from 'react';
 import "./style/Cards.scss"
 import {CardsView} from "./CardsView";
 import {CardCreator} from "./CardCreator";
-import { Card } from './Card';
 import {connect} from "react-redux";
 import * as actions from "../../redux/actions";
 import {ICardsResponse} from "../../types";
+import {CardList} from "./CardList";
 
 const Cards = (props: any) => {
     const {cards, boardId, listId} = props;
+    const expectedCards = cards.filter((card: any) =>
+        (card.listId === listId && card.boardId === boardId)
+    )
+    const sortedCards = expectedCards.sort((a: any, b: any) =>
+        (a.position > b.position) ? 1 : ((b.position > a.position) ? -1 : 0))
     const addCardName = (newCard: string) => {
-        const archived= false;
-        props.createCard(listId, boardId, newCard, archived)
+        const archived = false;
+        const position = expectedCards.length + 1;
+        props.createCard(listId, boardId, newCard, archived, position)
     }
+
     return (
         <CardsView
             cardCreator={<CardCreator addCardName={addCardName}/>}
-            oneCard={<Card cards={cards} boardId={boardId} listId={listId}/>}
+            cardList={
+                <CardList
+                    cards={sortedCards}
+                />
+            }
         />
     )
 }

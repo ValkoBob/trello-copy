@@ -189,7 +189,7 @@ $color-button_hover: silver;
     height: 100%;
     top: 60px;
     display: flex;
-    align-items: baseline;
+    align-items: flex-start;
   }
   &-creator {
     user-select: none;

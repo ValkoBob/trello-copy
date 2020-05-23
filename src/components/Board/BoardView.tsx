@@ -5,11 +5,13 @@ import Lists from "../Lists";
 interface Props {
     editableName: JSX.Element[] | JSX.Element,
     boardMenu: JSX.Element[] | JSX.Element,
-    boardMenuButton: JSX.Element[] | JSX.Element
+    boardMenuButton: JSX.Element[] | JSX.Element,
+    popOverComponents: JSX.Element[] | JSX.Element
 }
 
 export const BoardView = (props: Props) => {
     return (
+        <>
         <div className="board">
             <div className="board-wrapper">
                 <div className="board-content">
@@ -26,5 +28,7 @@ export const BoardView = (props: Props) => {
                 {props.boardMenu}
             </div>
         </div>
+        {props.popOverComponents}
+        </>
     )
 }

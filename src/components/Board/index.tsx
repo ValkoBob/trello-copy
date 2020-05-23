@@ -7,6 +7,7 @@ import * as actions from "../../redux/actions";
 import {useParams} from "react-router";
 import {Spinner} from "../MultipleComponents/Spinner";
 import {BoardMenu, BoardMenuButton} from "./BoardMenu";
+import {PopOverComponents} from "../PopOverComponents";
 
 const Board = (props: any): any => {
     const {id_board}: any = useParams();
@@ -50,6 +51,7 @@ const Board = (props: any): any => {
                 isVisible={isVisible}
             />}
             boardMenuButton={<BoardMenuButton isVisibleMenu={isVisibleMenu}/>}
+            popOverComponents={<PopOverComponents/>}
         />
     )
 }

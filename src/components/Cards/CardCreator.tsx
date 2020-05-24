@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 type PropsType = {
     addCardName: (text: string) => void
@@ -41,10 +41,13 @@ export const CardCreator = ({addCardName}: PropsType) => {
                 <div className="card-creator-button">
                     <button id='card-creator-button'
                             onClick={handleSubmit}
-                            className="card-creator-button__add">Додати картку</button>
+                            className="card-creator-button__add">Додати картку
+                    </button>
                     <button
                         className="card-creator-button__close"
-                        onClick={() => setActiveCreator(false)}
+                        onClick={() => {
+                            setActiveCreator(false)
+                        }}
                     >x
                     </button>
                 </div>

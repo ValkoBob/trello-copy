@@ -25,6 +25,14 @@ export interface IState {
     dataRequest: {
         loading: boolean,
         error: null
+    },
+    popOver: {
+        pop_over: boolean,
+        position: number,
+        currentListId: number | null,
+        isActiveBoardMenu: boolean,
+        isActiveListCreator: boolean,
+        isActiveCardCreator: boolean
     }
 }
 

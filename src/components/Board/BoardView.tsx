@@ -1,6 +1,7 @@
 import React from 'react';
 import './../Board/style/Board.scss';
 import Lists from "../Lists";
+import BoardCheckerClick from "./BoardCheckerClick";
 
 interface Props {
     editableName: JSX.Element[] | JSX.Element,
@@ -12,7 +13,7 @@ interface Props {
 export const BoardView = (props: Props) => {
     return (
         <>
-        <div className="board">
+        <BoardCheckerClick>
             <div className="board-wrapper">
                 <div className="board-content">
                     <div className="board-header">
@@ -27,7 +28,7 @@ export const BoardView = (props: Props) => {
                 </div>
                 {props.boardMenu}
             </div>
-        </div>
+        </BoardCheckerClick>
         {props.popOverComponents}
         </>
     )

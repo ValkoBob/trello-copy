@@ -5,13 +5,15 @@ import {IState} from "../../types";
 import {connect} from "react-redux";
 import * as actions from "../../redux/actions";
 import {useParams} from "react-router";
+import { withRouter } from 'react-router-dom';
 import {Spinner} from "../MultipleComponents/Spinner";
 import {BoardMenu, BoardMenuButton} from "./BoardMenu";
 import {PopOverComponents} from "../PopOverComponents";
 
+
 const Board = (props: any): any => {
     const {id_board}: any = useParams();
-    const {boards, loading, error} = props;
+    const {boards, loading, error, isActiveBoardMenu} = props;
     const objectWithBoard = boards.find((object: any) => object.id === id_board)
     useEffect(() => {
         props.fetchBoards();
@@ -26,16 +28,14 @@ const Board = (props: any): any => {
     const editClass = (className: string) => {
         return className + "__variant"
     }
-    const [isVisible, setVisible] = useState(false)
-    const isVisibleMenu = () => {
-        setVisible(!isVisible)
+    const isVisibleMenu = (isShow: boolean) => {
+        props.onClickBoardMenu(isShow)
     }
     if (loading || objectWithBoard === undefined) {
         return (
             <Spinner/>
         )
     }
-
     return (
         <BoardView
             editableName={
@@ -48,7 +48,7 @@ const Board = (props: any): any => {
                 />}
             boardMenu={<BoardMenu
                 isVisibleMenu={isVisibleMenu}
-                isVisible={isVisible}
+                isVisible={isActiveBoardMenu}
             />}
             boardMenuButton={<BoardMenuButton isVisibleMenu={isVisibleMenu}/>}
             popOverComponents={<PopOverComponents/>}
@@ -60,7 +60,8 @@ const mapStateToProps = (state: IState) => {
     const {boards} = state.boards;
     const {lists} = state.lists;
     const {loading, error} = state.dataRequest
-    return {lists, boards, loading, error};
+    const {isActiveBoardMenu} = state.popOver
+    return {lists, boards, loading, error, isActiveBoardMenu};
 }
 
 export default connect(mapStateToProps, actions)(Board);

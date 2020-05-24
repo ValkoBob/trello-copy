@@ -4,11 +4,11 @@ import {CardsView} from "./CardsView";
 import {CardCreator} from "./CardCreator";
 import {connect} from "react-redux";
 import * as actions from "../../redux/actions";
-import {ICardsResponse} from "../../types";
+import {ICardsResponse, IState} from "../../types";
 import {CardList} from "./CardList";
 
 const Cards = (props: any) => {
-    const {cards, boardId, listId} = props;
+    const {cards, boardId, listId, check} = props;
     const expectedCards = cards.filter((card: any) =>
         (card.listId === listId && card.boardId === boardId)
     )
@@ -22,7 +22,10 @@ const Cards = (props: any) => {
 
     return (
         <CardsView
-            cardCreator={<CardCreator addCardName={addCardName}/>}
+            cardCreator={
+                <CardCreator
+                addCardName={addCardName}
+            />}
             cardList={
                 <CardList
                     cards={sortedCards}
@@ -32,8 +35,9 @@ const Cards = (props: any) => {
     )
 }
 
-const mapStateToProps = ({cards}: { cards: ICardsResponse[] }) => {
-    return cards;
+const mapStateToProps = (state: IState) => {
+    const {cards} = state.cards
+    return {cards};
 }
 
 export default connect(mapStateToProps, actions)(Cards);

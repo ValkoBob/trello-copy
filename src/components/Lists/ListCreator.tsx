@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 
 type PropsType = {
-    addListName: (text: string) => void
+    addListName: (text: string) => void,
+    isActive: boolean,
+    setActiveCreator: (isShow: boolean) => void
 }
-export const ListCreator = ({addListName}: PropsType) => {
-    const [isActive, setActiveCreator] = useState(false)
+export const ListCreator = ({addListName, isActive, setActiveCreator}: PropsType) => {
     const [nameList, setNameList] = useState('')
     const handleBlur = (e: any) => {
         if (e.relatedTarget === null || e.relatedTarget.id !== 'board-creator-form__input') {

@@ -6,7 +6,12 @@ import {useHistory, useParams} from "react-router";
 import {connect} from "react-redux";
 import * as actions from "../../redux/actions";
 
-const BoardDeleter = (props: any) => {
+interface Props {
+    isVisibleMenu: (isShow: boolean) => void;
+    deleteBoard: (id: string) => void;
+}
+
+const BoardDeleter = (props:  Props) => {
     const {id_board}: any = useParams();
     const [show, setShow] = useState(false);
     const history = useHistory();
@@ -16,6 +21,7 @@ const BoardDeleter = (props: any) => {
 
     const handleDeleteBoard = () => {
         props.deleteBoard(id_board)
+        props.isVisibleMenu(false)
         history.push(`/`)
     }
 

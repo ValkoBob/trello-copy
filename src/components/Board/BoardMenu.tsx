@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import BoardDeleter from "./BoardDeleter";
 
 type BoardMenuType = {
@@ -17,7 +17,9 @@ const BoardMenu = ({isVisibleMenu, isVisible} : BoardMenuType) => {
             </div>
             <div className="board-menu-content">
                 <ul className="board-menu-navigation">
-                    <BoardDeleter/>
+                    <BoardDeleter
+                        isVisibleMenu={isVisibleMenu}
+                    />
                 </ul>
             </div>
         </div>

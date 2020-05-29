@@ -1,61 +1,49 @@
 export interface IState {
-    boards: { boards: {
-        id: number,
-        title: string,
-        _background: string
-    }[]}
-    lists: { lists: {
-        "id": number,
-        "board_id": number,
-        "title": string,
-        "position": number,
-        "archived": boolean
-    }[]},
-    cards: {cards: {
-            "id": number,
-            "list_id": number,
-            "board_id": number,
-            "title": string,
-            "users": number[],
-            "description": string,
-            "slug": string,
-            "archived": number
-        }[]},
+    boards: { boards: IBoards[]}
+    lists: { lists: ILists[]},
+    cards: {cards: ICards[]},
     users: {users: []},
-    dataRequest: {
-        loading: boolean,
-        error: null
-    },
-    popOver: {
-        pop_over: boolean,
-        position: number,
-        currentListId: number | null,
-        isActiveBoardMenu: boolean,
-        isActiveListCreator: boolean,
-        isActiveCardCreator: boolean
-    }
+    dataRequest: IDataRequest,
+    popOver: IPopOver
 }
 
-export interface IBoardsResponse {
-    id: number,
+export interface IBoards {
+    id: string,
     title: string,
     background: string
 }
 
-export interface IListsResponse {
-    "id": number,
-    "board_id": number,
+export interface ILists{
+    "id": string,
+    "boardId": string,
     "title": string,
     "position": number,
     "archived": boolean
 }
 
-export interface ICardsResponse {
-    "id": number,
-    "listId": number,
-    "boardId": number,
+export interface ICards {
+    "id": string,
+    "listId": string,
+    "boardId": string,
     "title": string,
     "description": string,
     "slug": string,
-    "archived": number
+    "archived": boolean,
+    "position": number
+}
+
+export interface IDataRequest {
+    loading: boolean,
+    error: null
+}
+
+export interface IPopOver {
+    pop_over: boolean,
+    position: number,
+    currentListId: string | null,
+    isActiveBoardMenu: boolean,
+    isActiveListCreator: boolean,
+    isActiveCardCreator: boolean,
+    isActiveCardEditor: boolean,
+    data: ICards
 }

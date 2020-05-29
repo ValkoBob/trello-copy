@@ -1,44 +1,47 @@
 import React, {useEffect, useState} from 'react'
 import {Card} from "./Card";
+import {ICards} from "../../types";
 
-export const CardList = (props: any) => {
-    const {cards, listId} = props
+export const CardList = (props: { cards: ICards[]; popOverCardEditor: (data?: ICards) => void; }) => {
+    const {cards, popOverCardEditor} = props
     const [state, setState] = useState({cards})
-    useEffect(()=> setState({cards}),[cards])
-    const onDragOver = (e: any) => {
+    useEffect(() => setState({cards}), [cards])
+    const onDragOver = (e: { preventDefault: () => void; }) => {
         e.preventDefault()
     }
-    const onDragStart = (e: any, id: number) => {
+    const onDragStart = (e: { dataTransfer: { setData: (arg0: string, arg1: string) => void; }; },
+                         id: string) => {
         e.dataTransfer.setData("id", id)
     }
-    const onDrop = (e: any) => {
+    const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault()
         const updatedCards = state.cards;
         const idFrom = e.dataTransfer.getData('id');
-        const idTo = e.target.getAttribute("id")
-        if(idFrom === idTo) {
+        const idTo = (e.target as HTMLDivElement).getAttribute("id")
+        if (idFrom === idTo) {
             return
         }
         console.log(idFrom + "-" + idTo)
-        const element =
-        updatedCards.splice(idTo, 0, );
+        /*updatedCards.splice(idTo, 0,);*/
         console.log(updatedCards)
 
     }
     return (
         <div className="card-list"
-            onDragOver={onDragOver}
-            onDrop={onDrop}
+             onDragOver={onDragOver}
+             onDrop={onDrop}
         >
-            {state.cards.map((card: any, index: number) => {
-                    return (
-                        <Card
-                            key={card.id}
-                            id={card.id}
-                            title={card.title}
-                            onDragStart={onDragStart}
-                        />
-                    )
+            {state.cards.map((card: ICards) => {
+                    if (!card.archived) {
+                        return (
+                            <Card
+                                key={card.id}
+                                card={card}
+                                onDragStart={onDragStart}
+                                popOverCardEditor={popOverCardEditor}
+                            />
+                        )
+                    }
                 }
             )}
         </div>

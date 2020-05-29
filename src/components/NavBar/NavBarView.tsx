@@ -2,7 +2,10 @@ import React from 'react';
 import './../NavBar/style/NavBar.scss';
 import {Link} from "react-router-dom";
 
-export const NavBarView = (props: any) => {
+export const NavBarView = (props: {
+    newBoardView: React.ReactNode;
+    boardCreator: JSX.Element | JSX.Element[];
+}) => {
     return (
         <div className="header">
             <div className="header-nav">
@@ -27,7 +30,7 @@ export const NavBarView = (props: any) => {
             <Link to="/" style={{textDecoration: 'none'}} className="header-logo">
                     <span className="header-logo__icon1">
                     </span>
-                    <span className="header-logo__icon2">
+                <span className="header-logo__icon2">
                     </span>
                 <div className="header-logo-title">
                 </div>
@@ -42,7 +45,9 @@ export const NavBarView = (props: any) => {
                                   height: "32px",
                                   width: "32px",
                                   lineHeight: "32px",
-                                  backgroundImage: 'url("https://trello-members.s3.amazonaws.com/5c81359f7788f4739c326dae/ce989ca0be80a3004929e3441367d6a8/170.png")'
+                                  backgroundImage: 'url("https://trello-members.s3.amazonaws.' +
+                                      'com/5c81359f7788f4739c326dae/' +
+                                      'ce989ca0be80a3004929e3441367d6a8/170.png")'
                               }}>
                         </span>
                     </div>

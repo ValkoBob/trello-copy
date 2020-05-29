@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 
 type PropsType = {
     addCardName: (text: string) => void
@@ -6,8 +6,9 @@ type PropsType = {
 export const CardCreator = ({addCardName}: PropsType) => {
     const [isActive, setActiveCreator] = useState(false)
     const [nameCard, setNameCard] = useState('')
-    const handleBlur = (e: any) => {
-        if (e.relatedTarget === null || e.relatedTarget.id !== 'card-creator-button') {
+    const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+        if (e.relatedTarget === null ||
+            (e.relatedTarget as HTMLTextAreaElement).id !== 'card-creator-button') {
             setActiveCreator(false)
             setNameCard('')
         }
@@ -15,7 +16,7 @@ export const CardCreator = ({addCardName}: PropsType) => {
     const handleChange = (e: { target: HTMLTextAreaElement; }) => {
         setNameCard(e.target.value)
     }
-    const handleKeyDown = (e: any) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.which === 13) {
             handleSubmit()
         }

@@ -4,8 +4,8 @@ import {
 
 type INITIAL_STATE_TYPE = {
     lists: {
-        "id": number,
-        "board_id": number,
+        "id": string,
+        "boardId": string,
         "title": string,
         "position": number,
         "archived": boolean

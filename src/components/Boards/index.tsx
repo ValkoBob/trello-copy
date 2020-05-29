@@ -2,16 +2,24 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {BoardsView} from "./BoardsView";
 import * as actions from "../../redux/actions";
-import {IState} from "../../types";
+import {IBoards, IState} from "../../types";
 import BoardCreator from "./BoardCreator";
 import {BoardsRender} from "./BoardsRender";
 import {BoardCreatorView} from "./BoardCreatorView";
 import {Spinner} from "../MultipleComponents/Spinner";
 
-class Boards extends Component<any> {
+interface Props {
+    fetchBoards: () => void,
+    boards: IBoards[],
+    loading: boolean,
+    error: any
+}
+
+class Boards extends Component<Props> {
     state = {
         isShowCreator: false
     }
+
     componentDidMount() {
         this.props.fetchBoards()
     }
@@ -19,15 +27,15 @@ class Boards extends Component<any> {
     handleShowCreator = () => {
         this.setState({
             isShowCreator: !this.state.isShowCreator
-            })
+        })
     }
 
     render() {
         const {boards, loading, error} = this.props;
         const {isShowCreator} = this.state;
-        if(loading){
+        if (loading) {
             return (
-                <Spinner />
+                <Spinner/>
             )
         } else {
             return (

@@ -1,0 +1,101 @@
+.card-editor {
+  background: rgba(0,0,0,.6);
+  bottom: 0;
+  color: #fff;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  height: 100%;
+  &__close {
+    text-align: center;
+    text-decoration: none;
+    vertical-align: bottom;
+    font-size: 30px;
+    height: 50px;
+    line-height: 32px;
+    width: 50px;
+    color: hsla(0,0%,100%,.6);
+    padding: 3px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    &:hover {
+      font-size: 32px;
+      color: white;
+    }
+  }
+  &-textarea {
+    color: #fff;
+    position: absolute;
+    top: 128px;
+    left: 16px;
+    width: 256px;
+    &__edit {
+      background-color: #fff;
+      border-radius: 3px;
+      display: block;
+      margin-bottom: 8px;
+      max-width: 300px;
+      min-height: 20px;
+      text-decoration: none;
+      width: 256px;
+      cursor: default;
+      overflow: hidden;
+      padding: 6px 8px 2px;
+      position: relative;
+      z-index: 10;
+      color: #172b4d;
+      box-sizing: border-box;
+      line-height: 20px;
+      margin: -1px;
+      border: 1px solid transparent;
+      box-shadow: none;
+      overflow-wrap: break-word;
+      resize: none;
+      height: 90px;
+    }
+  }
+  &__button {
+    box-sizing: border-box;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 8px 4px 0 0;
+    padding: 6px 24px;
+    text-align: center;
+    background-color: #5aac44;
+    box-shadow: none;
+    border: none;
+    color: #fff;
+  }
+  &-buttons {
+    color: #fff;
+    left: 100%;
+    position: absolute;
+    top: 0;
+    width: 240px;
+    z-index: 0;
+    opacity: 1;
+    transform: translateX(0);
+    &__item {
+      background: rgba(0,0,0,.6);
+      border-radius: 3px;
+      clear: both;
+      color: #e6e6e6;
+      display: block;
+      float: left;
+      margin: 0 0 4px 8px;
+      padding: 6px 12px 6px 8px;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover {
+        background-color: #091e42;
+      }
+    }
+  }
+}

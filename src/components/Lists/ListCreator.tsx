@@ -7,8 +7,9 @@ type PropsType = {
 }
 export const ListCreator = ({addListName, isActive, setActiveCreator}: PropsType) => {
     const [nameList, setNameList] = useState('')
-    const handleBlur = (e: any) => {
-        if (e.relatedTarget === null || e.relatedTarget.id !== 'board-creator-form__input') {
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (e.relatedTarget === null ||
+            (e.relatedTarget as HTMLInputElement).id !== 'board-creator-form__input') {
             setActiveCreator(false)
             setNameList('')
         }
@@ -16,7 +17,7 @@ export const ListCreator = ({addListName, isActive, setActiveCreator}: PropsType
     const handleChange = (e: { target: HTMLInputElement; }) => {
         setNameList(e.target.value)
     }
-    const handleKeyDown = (e: any) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.which === 13) {
             handleSubmit()
         }

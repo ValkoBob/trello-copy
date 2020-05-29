@@ -2,12 +2,18 @@ import React from "react";
 import {EditableName} from "../MultipleComponents/EditableName";
 import Cards from "../Cards";
 import ListMenu from "./ListMenu";
+import {ILists} from "../../types";
 
+interface Props {
+    lists: ILists[];
+    boardId: string;
+    editText: (id: string, newTitle: string) => void;
+    editClass: (className: string) => string;
+}
 
-export const List = (props: any) => {
+export const List = (props: Props) => {
     const {lists, boardId, editText, editClass} = props;
-    return (
-        lists.map((list: any) => {
+        const listsRender = lists.map((list: ILists) => {
             if (!list.archived) {
                 return (
                     <div key={list.id} className="board-content-list__item">
@@ -27,5 +33,5 @@ export const List = (props: any) => {
                 )
             }
         })
-    )
+    return (<>{listsRender}</>)
 }

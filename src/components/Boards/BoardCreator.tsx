@@ -1,28 +1,30 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useHistory} from "react-router";
 import {changeTitle} from "./BoardsRender";
-import {IBoardsResponse} from "../../types";
+import {IBoards} from "../../types";
 import {connect} from "react-redux";
 import * as actions from "../../redux/actions";
 
-const BoardCreator = (props: any) => {
-    const { isShow, createBoard, boards, handleShow} = props;
+interface Props {
+    boardCreatorView?: JSX.Element | JSX.Element[];
+    isShow: boolean;
+    createBoard: (text: string, background: string) => any;
+    boards?: IBoards[];
+    handleShow: () => void;
+}
+
+const BoardCreator = (props: Props) => {
+    const {isShow, createBoard, boards, handleShow} = props;
     const [text, setText] = useState('');
-    const history = useHistory();
 
     const handleChange = (event: { target: HTMLInputElement; }) => setText(event.target.value);
-    const handleCreateNewBoard = () => {
+    const handleCreateNewBoard =  async () => {
         if (text.length > 0) {
-            let id = 1;
-            if(boards.length > 0){
-                id = (+boards[boards.length - 1].id) + 1;
-            }
-            createBoard(id, text, "");
+            const data = await createBoard(text, "");
             handleShow();
-            history.push(`b/${id}/${changeTitle(text)}`)
+            window.location.assign(`/b/${data.id}/${changeTitle(text)}`)
         }
     }
 
@@ -30,7 +32,7 @@ const BoardCreator = (props: any) => {
         <>
             {props.boardCreatorView}
             <Modal show={isShow}>
-                <Modal.Header closeButton>
+                <Modal.Header closeButton onClick={handleShow}>
                     <Modal.Title>
                         <label htmlFor="creatorInput">Створити нову дошку</label>
                     </Modal.Title>
@@ -47,7 +49,7 @@ const BoardCreator = (props: any) => {
                         Закрити
                     </Button>
                     <button className="boards-creator__button" onClick={handleCreateNewBoard}>
-                            Створити
+                        Створити
                     </button>
                 </Modal.Footer>
             </Modal>
@@ -55,7 +57,7 @@ const BoardCreator = (props: any) => {
     )
 }
 
-const mapStateToProps = ({boards}: { boards: IBoardsResponse[] }) => {
+const mapStateToProps = ({boards}: { boards: IBoards[] }) => {
     return boards;
 }
 

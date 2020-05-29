@@ -11,7 +11,8 @@ export const NavBar = () => {
     return (
         <NavBarView
             newBoardView={<NewBoardView handleShow={handleShow}/>}
-            boardCreator={<BoardCreator isShow={isShow} handleShow={handleShow}/>}
+            boardCreator={<BoardCreator isShow={isShow} handleShow={handleShow}
+            />}
         />
     )
 }

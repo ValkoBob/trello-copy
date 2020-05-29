@@ -4,20 +4,34 @@ import {CardsView} from "./CardsView";
 import {CardCreator} from "./CardCreator";
 import {connect} from "react-redux";
 import * as actions from "../../redux/actions";
-import {ICardsResponse, IState} from "../../types";
+import {ICards, IState} from "../../types";
 import {CardList} from "./CardList";
 
-const Cards = (props: any) => {
-    const {cards, boardId, listId, check} = props;
-    const expectedCards = cards.filter((card: any) =>
+interface Props {
+    createCard: (listId: string,
+                  boardId: string,
+                  newCard: string,
+                  archived: boolean,
+                  position: number) => void;
+    popOverCardEditor: (data?: ICards) => void;
+    cards: ICards[];
+    boardId: string;
+    listId: string;
+}
+
+const Cards = (props: Props) => {
+    const {cards, boardId, listId} = props;
+    const expectedCards = cards!.filter((card: ICards) =>
         (card.listId === listId && card.boardId === boardId)
     )
-    const sortedCards = expectedCards.sort((a: any, b: any) =>
+    const sortedCards = expectedCards.sort((a: ICards, b: ICards) =>
         (a.position > b.position) ? 1 : ((b.position > a.position) ? -1 : 0))
     const addCardName = (newCard: string) => {
         const archived = false;
         const position = expectedCards.length + 1;
-        props.createCard(listId, boardId, newCard, archived, position)
+        if (props.createCard) {
+            props.createCard(listId, boardId, newCard, archived, position)
+        }
     }
 
     return (
@@ -28,6 +42,7 @@ const Cards = (props: any) => {
             />}
             cardList={
                 <CardList
+                    popOverCardEditor={props.popOverCardEditor}
                     cards={sortedCards}
                 />
             }

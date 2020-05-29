@@ -2,7 +2,12 @@ import React from 'react';
 import './../Boards/style/Boards.scss'
 import {Link} from "react-router-dom";
 
-export const BoardsView = (props: any) => {
+interface Props {
+    boardsRender: JSX.Element | JSX.Element[],
+    boardCreator: JSX.Element | JSX.Element[]
+}
+
+export const BoardsView = (props: Props) => {
     return (
         <div className="section">
             <nav className="navbar">

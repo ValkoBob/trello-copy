@@ -4,8 +4,18 @@ import * as actions from "../../redux/actions";
 import styled from "@emotion/styled";
 import "./style/PopOverListMenu.scss"
 import {useParams} from "react-router";
+import {ILists} from "../../types";
 
-const PopOverListMenu = (props: any) => {
+interface Props {
+    popOverListMenu: () => void;
+    renameList: (listId: string, archivedList: ILists) => void;
+    popover: boolean;
+    position: number;
+    listId: string;
+    lists: ILists[];
+}
+
+const PopOverListMenu = (props: Props) => {
     const {id_board}: any = useParams();
     const {popover, position, listId, lists} = props
     const objectWithList = lists.find((object: any) =>
@@ -30,8 +40,10 @@ const PopOverListMenu = (props: any) => {
 
     const archiveList = () => {
         const archivedList = objectWithList
-        archivedList.archived = true
-        props.renameList(listId, archivedList)
+        archivedList!.archived = true
+        if (archivedList) {
+            props.renameList(listId, archivedList)
+        }
         props.popOverListMenu()
     }
     return (

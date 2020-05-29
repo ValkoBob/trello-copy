@@ -2,7 +2,7 @@ import {
     CHECK_ONCLICK_BOARD,
     ONCLICK_BOARD_MENU,
     ONCLICK_CARD_CREATOR,
-    ONCLICK_LIST_CREATOR,
+    ONCLICK_LIST_CREATOR, POP_OVER_CARD_EDITOR,
     POP_OVER_LIST_MENU
 } from "../constants";
 
@@ -10,10 +10,12 @@ import {
 type INITIAL_STATE_TYPE = {
     pop_over: boolean,
     position: number,
-    currentListId: number | null,
+    currentListId: string | null,
     isActiveBoardMenu: boolean,
     isActiveListCreator: boolean,
-    isActiveCardCreator: boolean
+    isActiveCardCreator: boolean,
+    isActiveCardEditor: boolean,
+    data: any
 }
 
 const INITIAL_STATE: INITIAL_STATE_TYPE = {
@@ -22,7 +24,9 @@ const INITIAL_STATE: INITIAL_STATE_TYPE = {
     "currentListId": null,
     isActiveBoardMenu: false,
     isActiveListCreator: false,
-    isActiveCardCreator: false
+    isActiveCardCreator: false,
+    isActiveCardEditor: false,
+    data: {}
 };
 
 export const popOver = (state = INITIAL_STATE, action: any): INITIAL_STATE_TYPE => {
@@ -55,6 +59,12 @@ export const popOver = (state = INITIAL_STATE, action: any): INITIAL_STATE_TYPE 
             return {
                 ...state,
                 isActiveCardCreator: action.payload.isActiveCardCreator
+            }
+        case POP_OVER_CARD_EDITOR:
+            return {
+                ...state,
+                isActiveCardEditor: !state.isActiveCardEditor,
+                data: action.payload.data
             }
         default:
             return state

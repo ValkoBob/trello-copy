@@ -2,42 +2,50 @@ import React, {useState} from "react";
 
 type EditableNameType = {
     name: string,
-    id: string,
+    id: string | undefined,
     editText: (id: string, text: string) => void,
     editClass: (className: string) => string,
     className: string
 }
 
-export const EditableName = ({name, id, editText, editClass, className}: EditableNameType) => {
+export const EditableName = ({name, id, editText, editClass, className}:
+                                 EditableNameType) => {
     const [isDisabled, setIsDisabled] = useState(true);
-    const [isSelected, setIsSelected] = useState(false);
+    const [isSelected, setIsSelected] = useState(false)
     const [text, setText] = useState(name);
-    const handleClick = (e: any) => {
+    const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
         setIsDisabled(false);
-        if(!isSelected) {
-            e.target.select();
+        if (!isSelected) {
+            (e.target as HTMLInputElement).select();
+            setIsSelected(true)
         }
     }
-    const handleKeyDown = (e: any) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.which === 13) {
-            handleSubmit()
+            handleSubmit(e)
         }
-
     }
     const handleChange = (e: { target: HTMLInputElement; }) => {
         setText(e.target.value)
     }
-    const handleSubmit = () => {
-        if(text.length > 0){
+    const handleSubmit = (e: React.KeyboardEvent<HTMLInputElement>
+        | React.FocusEvent<HTMLInputElement>) => {
+        if (text.length > 0 && id != null) {
             editText(id, text)
         } else {
             setText(name)
         }
+        if (isSelected) {
+            const selection: Selection | null = window.getSelection()
+            if (selection != null) {
+                selection.removeAllRanges();
+            }
+            setIsSelected(false)
+        }
         setIsDisabled(true);
-        setIsSelected(true);
     }
 
-    if(!isDisabled){
+    if (!isDisabled) {
         className = editClass(className)
     }
     return (

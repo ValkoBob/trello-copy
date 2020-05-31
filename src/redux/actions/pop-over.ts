@@ -1,4 +1,4 @@
-import {CHECK_ONCLICK_BOARD, POP_OVER_CARD_EDITOR, POP_OVER_LIST_MENU} from "../constants";
+import {CHECK_ONCLICK_BOARD, POP_OVER_CARD, POP_OVER_CARD_EDITOR, POP_OVER_LIST_MENU} from "../constants";
 import {ICards} from "../../types";
 
 
@@ -12,6 +12,13 @@ export const popOverListMenu = ( position: number = 1, currentListId: string= "1
 export const popOverCardEditor = (data?: ICards) => {
     return {
         type: POP_OVER_CARD_EDITOR,
+        payload: {data}
+    }
+}
+
+export const popOverCard = (data?: ICards) => {
+    return {
+        type: POP_OVER_CARD,
         payload: {data}
     }
 }

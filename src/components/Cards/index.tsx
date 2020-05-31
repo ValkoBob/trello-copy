@@ -14,6 +14,7 @@ interface Props {
                   archived: boolean,
                   position: number) => void;
     popOverCardEditor: (data?: ICards) => void;
+    popOverCard: (data?: ICards) => void;
     cards: ICards[];
     boardId: string;
     listId: string;
@@ -43,6 +44,7 @@ const Cards = (props: Props) => {
             cardList={
                 <CardList
                     popOverCardEditor={props.popOverCardEditor}
+                    popOverCard={props.popOverCard}
                     cards={sortedCards}
                 />
             }

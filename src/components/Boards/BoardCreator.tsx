@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,11 +16,11 @@ interface Props {
 }
 
 const BoardCreator = (props: Props) => {
-    const {isShow, createBoard, boards, handleShow} = props;
+    const {isShow, createBoard, handleShow} = props;
     const [text, setText] = useState('');
 
     const handleChange = (event: { target: HTMLInputElement; }) => setText(event.target.value);
-    const handleCreateNewBoard =  async () => {
+    const handleCreateNewBoard = async () => {
         if (text.length > 0) {
             const data = await createBoard(text, "");
             handleShow();

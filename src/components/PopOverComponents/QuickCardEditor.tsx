@@ -11,7 +11,7 @@ interface Props {
     data: ICards;
 }
 
-const QuickCardEditor = (props: Props): any => {
+const QuickCardEditor = (props: Props) => {
     const {isActiveCardEditor, data} = props
     const [text, setText] = useState('');
     useEffect(() => {
@@ -48,7 +48,7 @@ const QuickCardEditor = (props: Props): any => {
     return (
         <div className={`card-editor ${isActiveCardEditor ? 'show' : 'hide'}`}>
             <span
-                onClick={() => props.popOverCardEditor}
+                onClick={() => props.popOverCardEditor(data)}
                 className="card-editor__close"
             >x</span>
             <div className="card-editor-textarea">

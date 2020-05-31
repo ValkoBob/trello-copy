@@ -9,7 +9,8 @@ const BoardCheckerClick = (props: {
     const handleOnClick = (e: any) => {
         if (e.target.className === "board-canvas"
             || e.target.className === "card-list"
-            || e.target.className === "board-header") {
+            || e.target.className === "board-header"
+            || e.target.className === "board-wrapper") {
             props.checkOnClickBoard(true)
         }
     }

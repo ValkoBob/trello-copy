@@ -47,6 +47,9 @@
       word-wrap: break-word;
       display: flex;
       justify-content: space-between;
+      & span {
+        width: 100%;
+      }
       &-icon {
         display: none;
         padding: 2px;

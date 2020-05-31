@@ -45,5 +45,7 @@ export interface IPopOver {
     isActiveListCreator: boolean,
     isActiveCardCreator: boolean,
     isActiveCardEditor: boolean,
-    data: ICards
+    data: ICards,
+    isActivePopOverCard: boolean,
+    dataPopOverCard: ICards
 }

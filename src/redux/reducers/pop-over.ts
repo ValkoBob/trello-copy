@@ -2,9 +2,10 @@ import {
     CHECK_ONCLICK_BOARD,
     ONCLICK_BOARD_MENU,
     ONCLICK_CARD_CREATOR,
-    ONCLICK_LIST_CREATOR, POP_OVER_CARD_EDITOR,
+    ONCLICK_LIST_CREATOR, POP_OVER_CARD, POP_OVER_CARD_EDITOR,
     POP_OVER_LIST_MENU
 } from "../constants";
+import {ICards} from "../../types";
 
 
 type INITIAL_STATE_TYPE = {
@@ -15,7 +16,9 @@ type INITIAL_STATE_TYPE = {
     isActiveListCreator: boolean,
     isActiveCardCreator: boolean,
     isActiveCardEditor: boolean,
-    data: any
+    data: ICards,
+    isActivePopOverCard: boolean,
+    dataPopOverCard: ICards
 }
 
 const INITIAL_STATE: INITIAL_STATE_TYPE = {
@@ -26,7 +29,27 @@ const INITIAL_STATE: INITIAL_STATE_TYPE = {
     isActiveListCreator: false,
     isActiveCardCreator: false,
     isActiveCardEditor: false,
-    data: {}
+    data: {
+        "id": "",
+        "listId": "",
+        "boardId": "",
+        "title": "",
+        "description": "",
+        "slug": "",
+        "archived": false,
+        "position": 0
+    },
+    isActivePopOverCard: false,
+    dataPopOverCard: {
+        "id": "",
+        "listId": "",
+        "boardId": "",
+        "title": "",
+        "description": "",
+        "slug": "",
+        "archived": false,
+        "position": 0
+    }
 };
 
 export const popOver = (state = INITIAL_STATE, action: any): INITIAL_STATE_TYPE => {
@@ -65,6 +88,12 @@ export const popOver = (state = INITIAL_STATE, action: any): INITIAL_STATE_TYPE 
                 ...state,
                 isActiveCardEditor: !state.isActiveCardEditor,
                 data: action.payload.data
+            }
+        case POP_OVER_CARD:
+            return {
+                ...state,
+                isActivePopOverCard: !state.isActivePopOverCard,
+                dataPopOverCard: action.payload.data
             }
         default:
             return state

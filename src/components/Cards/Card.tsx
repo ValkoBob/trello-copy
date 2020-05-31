@@ -9,10 +9,11 @@ interface Props {
             { setData: (arg0: string, arg1: string) => void; };
     }, id: string) => void;
     popOverCardEditor: (data?: ICards) => void;
+    popOverCard: (data?: ICards) => void;
 }
 
 export const Card = (props: Props) => {
-    const {card, onDragStart, popOverCardEditor} = props
+    const {card, onDragStart, popOverCardEditor, popOverCard} = props
     return (
         <div
             draggable={true}
@@ -21,7 +22,7 @@ export const Card = (props: Props) => {
             className="card-list__item"
             onDragStart={(e) => onDragStart(e, card.id)}
         >
-            {card.title}
+            <span onClick={() => popOverCard(card)}>{card.title}</span>
             <div
                 onClick={() => popOverCardEditor(card)}
                 className="card-list__item-icon">

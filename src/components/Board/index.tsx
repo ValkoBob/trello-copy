@@ -39,25 +39,26 @@ const Board: React.FunctionComponent<BoardProps> = (props): JSX.Element => {
         return (
             <Spinner/>
         )
-    }
-    return (
-        <BoardView
-            editableName={
-                <EditableName
-                    name={objectWithBoard.title}
-                    id={id_board}
-                    editText={editText}
-                    editClass={editClass}
-                    className={"board-name"}
+    } else {
+        return (
+            <BoardView
+                editableName={
+                    <EditableName
+                        name={objectWithBoard.title}
+                        id={id_board}
+                        editText={editText}
+                        editClass={editClass}
+                        className={"board-name"}
+                    />}
+                boardMenu={<BoardMenu
+                    isVisibleMenu={isVisibleMenu}
+                    isVisible={isActiveBoardMenu}
                 />}
-            boardMenu={<BoardMenu
-                isVisibleMenu={isVisibleMenu}
-                isVisible={isActiveBoardMenu}
-            />}
-            boardMenuButton={<BoardMenuButton isVisibleMenu={isVisibleMenu}/>}
-            popOverComponents={<PopOverComponents/>}
-        />
-    )
+                boardMenuButton={<BoardMenuButton isVisibleMenu={isVisibleMenu}/>}
+                popOverComponents={<PopOverComponents/>}
+            />
+        )
+    }
 }
 
 const mapStateToProps = (state: IState) => {

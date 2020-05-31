@@ -2,8 +2,14 @@ import React, {useEffect, useState} from 'react'
 import {Card} from "./Card";
 import {ICards} from "../../types";
 
-export const CardList = (props: { cards: ICards[]; popOverCardEditor: (data?: ICards) => void; }) => {
-    const {cards, popOverCardEditor} = props
+interface Props {
+    cards: ICards[];
+    popOverCardEditor: (data?: ICards) => void;
+    popOverCard: (data?: ICards) => void;
+}
+
+export const CardList = (props: Props) => {
+    const {cards, popOverCardEditor, popOverCard} = props
     const [state, setState] = useState({cards})
     useEffect(() => setState({cards}), [cards])
     const onDragOver = (e: { preventDefault: () => void; }) => {
@@ -39,6 +45,7 @@ export const CardList = (props: { cards: ICards[]; popOverCardEditor: (data?: IC
                                 card={card}
                                 onDragStart={onDragStart}
                                 popOverCardEditor={popOverCardEditor}
+                                popOverCard={popOverCard}
                             />
                         )
                     }

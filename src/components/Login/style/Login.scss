@@ -1,0 +1,130 @@
+.login {
+  &-header {
+    margin: 40px auto;
+    height: 43px;
+    font-size: 40px;
+    color: #0079BF;
+    font-weight: 300;
+    line-height: 1.44em;
+    -webkit-box-direction: normal;
+    border: 0;
+    vertical-align: middle;
+    text-align: center;
+    display: block;
+  }
+  &-form {
+    font-weight: 300;
+    line-height: 1.44em;
+    display: block;
+    width: 100%;
+    overflow: visible;
+    color: #4d4d4d;
+    font-size: 14px;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    padding: 25px 40px;
+    box-shadow: rgba(0,0,0,0.1) 0 0 10px;
+    & h1 {
+      margin: 10px 0 25px;
+      text-align: center;
+      color: #5E6C84;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      line-height: 28px;
+    }
+    &-container {
+      color: #4d4d4d;
+      font-weight: 300;
+      line-height: 1.44em;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    &-email {
+      color: inherit;
+      font: inherit;
+      line-height: normal;
+      display: block;
+      margin: 0 0 1.2em;
+      padding: .5em;
+      max-width: 400px;
+      font-size: 14px;
+      background: #FAFBFC;
+      border: 2px solid #DFE1E6;
+      box-sizing: border-box;
+      border-radius: 3px;
+      height: 44px;
+      width: 100%;
+    }
+    &-password {
+      color: inherit;
+      font: inherit;
+      line-height: normal;
+      display: block;
+      margin: 0 0 1.2em;
+      padding: .5em;
+      max-width: 400px;
+      font-size: 14px;
+      background: #FAFBFC;
+      border: 2px solid #DFE1E6;
+      box-sizing: border-box;
+      border-radius: 3px;
+      height: 44px;
+      width: 100%;
+    }
+    &-submit {
+      -webkit-box-direction: normal;
+      font: inherit;
+      line-height: normal;
+      margin: 0 0 1.2em;
+      border-radius: .3em;
+      display: inline-block;
+      font-weight: bold;
+      padding: .6em 1.3em;
+      position: relative;
+      text-decoration: none;
+      border: 0;
+      color: #fff;
+      -webkit-appearance: button;
+      cursor: pointer;
+      box-shadow: none;
+      width: 200px;
+      background: #5AAC44;
+    }
+    & hr {
+      font-size: 14px;
+      box-sizing: content-box;
+      display: block;
+      height: 1px;
+      border: 0;
+      border-top: 1px solid hsl(0,0%,80%);
+      padding: 0;
+      margin: 25px 0 1em;
+    }
+    &-link {
+      text-align: center;
+      font-size: 14px;
+      display: block;
+      padding: 0;
+      & li{
+        display: inline-block;
+        list-style: none;
+      }
+      & a {
+        margin: 0 4px 0 4px;
+        font-size: 14px;
+        list-style: none;
+        background: transparent;
+        text-decoration: none;
+        color: #0052CC;
+      }
+      & span {
+        font-size: 30px;
+      }
+    }
+  }
+}

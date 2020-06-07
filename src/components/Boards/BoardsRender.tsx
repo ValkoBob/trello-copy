@@ -2,7 +2,7 @@ import React from 'react';
 import {IBoards} from "../../types";
 import {Link} from "react-router-dom";
 
-export const BoardsRender = ({boards}: { boards: IBoards[] }): JSX.Element => {
+export const BoardsRender = ({boards}: { boards: any }): JSX.Element => {
     const boardRenders = boards.map((board: IBoards) => {
         return (
             <li key={board.id} className="boards-list__item">

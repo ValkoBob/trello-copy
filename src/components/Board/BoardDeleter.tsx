@@ -8,11 +8,12 @@ import * as actions from "../../redux/actions";
 
 interface Props {
     isVisibleMenu: (isShow: boolean) => void;
-    deleteBoard: (id: string) => void;
+    deleteBoard: (id: number) => void;
 }
 
 const BoardDeleter = (props:  Props) => {
     const {id_board}: any = useParams();
+    const boardId = +id_board;
     const [show, setShow] = useState(false);
     const history = useHistory();
 
@@ -20,9 +21,9 @@ const BoardDeleter = (props:  Props) => {
     const handleShow = () => setShow(true);
 
     const handleDeleteBoard = () => {
-        props.deleteBoard(id_board)
+        props.deleteBoard(boardId)
         props.isVisibleMenu(false)
-        history.push(`/`)
+        history.push(`/boards`)
     }
 
     return (

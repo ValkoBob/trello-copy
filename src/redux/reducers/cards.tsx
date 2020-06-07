@@ -6,9 +6,9 @@ import {
 
 type INITIAL_STATE_TYPE = {
     cards: {
-        "id": string,
-        "listId": string,
-        "boardId": string,
+        "id": number,
+        "listId": number,
+        "boardId": number,
         "title": string,
         "description": string,
         "slug": string,
@@ -108,8 +108,8 @@ export const cards = (state = INITIAL_STATE, action: any): INITIAL_STATE_TYPE =>
     }
 }
 
-const checkIdsCards = (cardId1: string, cardId2: string,
-                  listId1: string, listId2: string,
-                  boardId1: string, boardId2: string) => {
+const checkIdsCards = (cardId1: number, cardId2: number,
+                  listId1: number, listId2: number,
+                  boardId1: number, boardId2: number) => {
     return (cardId1 === cardId2  && listId1=== listId2 && boardId1 === boardId2)
 }

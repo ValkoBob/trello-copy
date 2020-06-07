@@ -3,31 +3,30 @@ import icon_description from '../style/images/description-icon.png'
 import {ICards} from "../../../types";
 
 interface Props {
-    card: ICards;
-    renameCard: (cardId: string, newData: ICards) => void;
+    data: any;
+    editDescriptionInCard: (cardId: number,
+                            boardId: number,
+                            listId: number,
+                            description: string) => void;
+    update?: boolean;
 }
 
 export const CardDescription = (props: Props) => {
-    const {card, renameCard} = props
+    const {data, editDescriptionInCard, update} = props
+    const {card, boardId, listId} = data;
     const [isActive, setDescEditor] = useState(false)
     const [text, setText] = useState('');
     useEffect(() => {
-        if (card.description !== undefined) {
-            setText(card.description)
+        if (card[1].description !== undefined) {
+            setText(card[1].description)
         }
-    }, [card.title])
+    }, [card[1].description])
     const handleChange = (e: { target: HTMLTextAreaElement; }) => {
         setText(e.target.value)
     }
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (e.which === 13) {
-            handleSubmit()
-        }
-    }
     const handleSubmit = () => {
         if (text.length > 0) {
-            card.description = text
-            renameCard(card.id, card)
+            editDescriptionInCard(card[0], boardId, listId, text)
         } else {
             setText(text)
         }
@@ -45,7 +44,7 @@ export const CardDescription = (props: Props) => {
                 </button>
             </div>
             <div className="popover-card-main-description__details">
-                {(!card.description) ?
+                {(!card[1].description) ?
                     <p onClick={() => setDescEditor(true)}
                        className={`popover-card-main-description__details-add
                         ${isActive ? 'hide' : 'show'}`}>
@@ -54,18 +53,17 @@ export const CardDescription = (props: Props) => {
                     <p onClick={() => setDescEditor(true)}
                        className={`popover-card-main-description__details-text
                         ${isActive ? 'hide' : 'show'}`}>
-                        {card.description}
+                        {text}
                     </p>
                 }
                 <div className={`popover-card-main-description__edit
                      ${isActive ? 'show' : 'hide'}`}>
                     <textarea
-                        className={card.description ? 'black-color' : ''}
-                        placeholder={`${card.description ? '' : "Додати детальніший опис…"}`}
+                        className={card[1].description ? 'black-color' : ''}
+                        placeholder={`${card[1].description ? '' : "Додати детальніший опис…"}`}
                         value={text ? text : ''}
                         onBlur={handleSubmit}
                         onChange={handleChange}
-                        onKeyDown={handleKeyDown}
                     >
                     </textarea>
                     <div className="edit-buttons">

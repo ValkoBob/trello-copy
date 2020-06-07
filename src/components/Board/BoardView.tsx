@@ -24,7 +24,7 @@ export const BoardView = (props: Props) => {
                         </div>
                         {props.boardMenuButton}
                     </div>
-                    <Lists />
+                    <Lists/>
                 </div>
                 {props.boardMenu}
             </div>

@@ -1,7 +1,9 @@
 export const FETCH_BOARDS = "FETCH_BOARDS";
+export const FETCH_ONE_BOARD = "FETCH_ONE_BOARD"
 export const DELETE_BOARD = "DELETE_BOARDS";
 export const CREATE_BOARD = "CREATE_BOARD";
 export const RENAME_BOARD = "RENAME_BOARD";
+export const UPDATE_BOARD = "UPDATE_BOARD";
 
 export const FETCH_USERS = "FETCH_USERS";
 export const ADD_USER = "ADD_USER";
@@ -23,6 +25,11 @@ export const RENAME_LIST = "RENAME_LIST";
 export const REQUEST_DATA = "REQUEST_DATA";
 export const REQUEST_DATA_SUCCESS = "REQUEST_DATA_SUCCESS";
 export const REQUEST_DATA_ERROR = "REQUEST_DATA_ERROR";
+
+export const LOGIN_USER = "LOGIN_USER"
+export const SIGNUP_USER = 'SIGNUP_USER'
+export const LOGOUT_USER = "LOGOUT_USER"
+export const USER_IN_LOCAL = "USER_IN_LOCAL"
 
 export const POP_OVER_LIST_MENU = "POP_OVER_LIST_MENU";
 export const POP_OVER_CARD_EDITOR = "POP_OVER_CARD_EDITOR";

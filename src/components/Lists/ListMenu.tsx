@@ -3,12 +3,13 @@ import {connect} from "react-redux";
 import * as actions from "../../redux/actions";
 
 interface Props {
-    popOverListMenu: (pos: number, listId: string) => void;
-    listId: string;
+    popOverListMenu: (pos: number, listId: number) => void;
+    listId: number;
+    boardId: number;
 }
 
 const ListMenu = (props: Props) => {
-    const {listId} = props;
+    const {listId, boardId} = props;
     const showPopOver = (e: React.MouseEvent<HTMLDivElement>) => {
         const x = e.pageX;
         const width = document.body.clientWidth;

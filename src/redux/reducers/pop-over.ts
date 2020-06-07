@@ -11,14 +11,14 @@ import {ICards} from "../../types";
 type INITIAL_STATE_TYPE = {
     pop_over: boolean,
     position: number,
-    currentListId: string | null,
+    currentListId: number | null,
     isActiveBoardMenu: boolean,
     isActiveListCreator: boolean,
     isActiveCardCreator: boolean,
     isActiveCardEditor: boolean,
     data: ICards,
     isActivePopOverCard: boolean,
-    dataPopOverCard: ICards
+    dataPopOverCard: any
 }
 
 const INITIAL_STATE: INITIAL_STATE_TYPE = {
@@ -30,9 +30,9 @@ const INITIAL_STATE: INITIAL_STATE_TYPE = {
     isActiveCardCreator: false,
     isActiveCardEditor: false,
     data: {
-        "id": "",
-        "listId": "",
-        "boardId": "",
+        "id": 0,
+        "listId": 0,
+        "boardId": 0,
         "title": "",
         "description": "",
         "slug": "",
@@ -41,9 +41,9 @@ const INITIAL_STATE: INITIAL_STATE_TYPE = {
     },
     isActivePopOverCard: false,
     dataPopOverCard: {
-        "id": "",
-        "listId": "",
-        "boardId": "",
+        "id": 0,
+        "listId": 0,
+        "boardId": undefined,
         "title": "",
         "description": "",
         "slug": "",

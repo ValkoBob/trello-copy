@@ -236,6 +236,7 @@
             overflow-wrap: break-word;
             resize: none;
             height: 108px;
+            white-space: pre-line;
           }
           & .edit-buttons {
             cursor: auto;
@@ -283,6 +284,45 @@
       width: 168px;
       overflow: hidden;
       z-index: 10;
+      & .sidebar-card {
+        clear: both;
+        margin-bottom: 24px;
+        position: relative;
+        & h3 {
+          color: #5e6c84;
+          font-size: 12px;
+          font-weight: 900;
+          letter-spacing: .04em;
+          text-transform: uppercase;
+          line-height: 20px;
+          margin: 0 0 -4px;
+        }
+        & .sidebar-elements {
+          &__item {
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: 400;
+            color: #172b4d;
+            background-color: rgba(9,30,66,.04);
+            border-radius: 3px;
+            box-sizing: border-box;
+            cursor: pointer;
+            display: block;
+            height: 32px;
+            margin-top: 8px;
+            max-width: 300px;
+            overflow: hidden;
+            padding: 6px 12px;
+            position: relative;
+            user-select: none;
+            white-space: nowrap;
+            text-align: center;
+            &:hover {
+              background-color: rgba(9, 30, 66, 0.07);
+            }
+          }
+        }
+      }
     }
   }
 }

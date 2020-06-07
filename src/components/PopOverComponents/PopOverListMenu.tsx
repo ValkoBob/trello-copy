@@ -4,22 +4,19 @@ import * as actions from "../../redux/actions";
 import styled from "@emotion/styled";
 import "./style/PopOverListMenu.scss"
 import {useParams} from "react-router";
-import {ILists} from "../../types";
 
 interface Props {
     popOverListMenu: () => void;
-    renameList: (listId: string, archivedList: ILists) => void;
+    deleteList: any;
     popover: boolean;
     position: number;
-    listId: string;
-    lists: ILists[];
+    listId: number;
 }
 
 const PopOverListMenu = (props: Props) => {
     const {id_board}: any = useParams();
-    const {popover, position, listId, lists} = props
-    const objectWithList = lists.find((object: any) =>
-        (object.boardId === id_board && object.id === listId))
+    const boardId = +id_board;
+    const {popover, position, listId} = props
     const PopOverListMenuWrapper = styled('div')`
     left: ${position}px;
     top: 130px;
@@ -39,11 +36,7 @@ const PopOverListMenu = (props: Props) => {
     }
 
     const archiveList = () => {
-        const archivedList = objectWithList
-        archivedList!.archived = true
-        if (archivedList) {
-            props.renameList(listId, archivedList)
-        }
+        props.deleteList(boardId, listId)
         props.popOverListMenu()
     }
     return (
@@ -88,8 +81,7 @@ const mapStateToProps = (state: any) => {
     const popover = state.popOver.pop_over
     const position = state.popOver.position
     const listId = state.popOver.currentListId
-    const lists = state.lists.lists
-    return {popover, position, listId, lists};
+    return {popover, position, listId};
 }
 
 

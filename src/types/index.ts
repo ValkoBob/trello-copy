@@ -2,29 +2,29 @@ export interface IState {
     boards: { boards: IBoards[]}
     lists: { lists: ILists[]},
     cards: {cards: ICards[]},
-    users: {users: []},
+    users: {users: [], "isAuthenticated": boolean,
+        'token': number},
     dataRequest: IDataRequest,
     popOver: IPopOver
 }
 
 export interface IBoards {
-    id: string,
-    title: string,
-    background: string
+    id: number,
+    title: string
 }
 
 export interface ILists{
-    "id": string,
-    "boardId": string,
+    "id": number,
+    "boardId": number,
     "title": string,
     "position": number,
     "archived": boolean
 }
 
 export interface ICards {
-    "id": string,
-    "listId": string,
-    "boardId": string,
+    "id": number,
+    "listId": number,
+    "boardId": number,
     "title": string,
     "description": string,
     "slug": string,
@@ -40,7 +40,7 @@ export interface IDataRequest {
 export interface IPopOver {
     pop_over: boolean,
     position: number,
-    currentListId: string | null,
+    currentListId: number | null,
     isActiveBoardMenu: boolean,
     isActiveListCreator: boolean,
     isActiveCardCreator: boolean,

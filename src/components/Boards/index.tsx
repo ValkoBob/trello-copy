@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useContext, useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {BoardsView} from "./BoardsView";
 import * as actions from "../../redux/actions";
@@ -9,59 +9,53 @@ import {BoardCreatorView} from "./BoardCreatorView";
 import {Spinner} from "../MultipleComponents/Spinner";
 
 interface Props {
-    fetchBoards: () => void,
-    boards: IBoards[],
-    loading: boolean,
-    error: any
+  fetchBoards: () => void,
+  boards: IBoards[],
+  loading: boolean,
+  error: any,
+  token: number
 }
 
-class Boards extends Component<Props> {
-    state = {
-        isShowCreator: false
-    }
+const Boards = (props: Props) => {
+  const {boards, loading} = props;
+  const [isShowCreator, setCreator] = useState(false)
+  useEffect(() => {
+      props.fetchBoards()
+  }, [])
 
-    componentDidMount() {
-        this.props.fetchBoards()
-    }
 
-    handleShowCreator = () => {
-        this.setState({
-            isShowCreator: !this.state.isShowCreator
-        })
-    }
+  const handleShowCreator = () => {
+    setCreator(!isShowCreator)
+  }
 
-    render() {
-        const {boards, loading, error} = this.props;
-        const {isShowCreator} = this.state;
-        if (loading) {
-            return (
-                <Spinner/>
-            )
-        } else {
-            return (
-                <BoardsView
-                    boardCreator={
-                        <BoardCreator
-                            isShow={isShowCreator}
-                            boardCreatorView={<BoardCreatorView handleShow={this.handleShowCreator}/>}
-                            handleShow={this.handleShowCreator}
-                        />
-                    }
-                    boardsRender={
-                        <BoardsRender
-                            boards={boards}
-                        />
-                    }
-                />
-            )
-        }
-    }
+  if (loading) {
+    return (
+        <Spinner/>
+    )
+  } else {
+    return (
+        <BoardsView
+            boardCreator={
+              <BoardCreator
+                  isShow={isShowCreator}
+                  boardCreatorView={<BoardCreatorView handleShow={handleShowCreator}/>}
+                  handleShow={handleShowCreator}
+              />
+            }
+            boardsRender={
+              <BoardsRender
+                  boards={boards}
+              />
+            }
+        />
+    )
+  }
 }
 
 const mapStateToProps = (state: IState) => {
-    const {boards} = state.boards;
-    const {loading, error} = state.dataRequest
-    return {boards, loading, error};
+  const {boards} = state.boards;
+  const {loading, error} = state.dataRequest
+  return {boards, loading, error};
 }
 
 export default connect(mapStateToProps, actions)(Boards);

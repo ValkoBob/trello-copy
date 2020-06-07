@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./style/Lists.scss"
 import {ListsView} from "./ListsView";
 import {ILists, IState} from "../../types";
@@ -9,21 +9,27 @@ import {useParams} from "react-router";
 import {List} from "./List";
 
 interface Props {
-    createList: (boardId: string, title: string, position: number, archived: boolean) => void;
-    renameList: (listId: string, newData: ILists) => void;
+    createList: (boardId: number, title: string, position: number, archived: boolean) => void;
+    renameList: any;
     onClickListCreator: (isActiveListCreator: boolean) => void;
-    lists: ILists[];
+    boards: any;
     isActiveListCreator: boolean;
+    fetchOneBoard: any;
 }
 
-const Lists = (props: Props) => {
+const Lists = (props: any) => {
     const {id_board} = useParams();
-    const boardId = id_board != null ? id_board : '';
-    const {lists, isActiveListCreator} = props;
-    const expectedLists = lists!.filter((list: ILists) =>
-        list.boardId === boardId)
+    // @ts-ignore
+    const boardId = +id_board;
+    const {boards, isActiveListCreator} = props;
+    const expectBoard = boards.find((board: { id: number; }) => board.id === boardId);
+    if(expectBoard.lists === undefined) {
+        return null
+    }
+    const {lists} = expectBoard;
+    const expectedLists = Object.entries(lists)
     const sortedLists = expectedLists.sort((a: any, b: any) =>
-        (a.position > b.position) ? 1 : ((b.position > a.position) ? -1 : 0))
+        (a[1].position > b[1].position) ? 1 : ((b[1].position > a[1].position) ? -1 : 0))
     const addListName = (text: string) => {
         const position = sortedLists.length + 1;
         const archived = false;
@@ -31,11 +37,15 @@ const Lists = (props: Props) => {
             props.createList(boardId, text, position, archived)
         }
     }
-    const editListName = (id: string, newTitle: string) => {
-        const newListTitle = sortedLists.find((object: ILists) => object.id === id);
-        newListTitle!.title = newTitle;
+    const editListName = (id: number, newTitle: string) => {
+        const newListTitle = sortedLists.find((object: any) => object[0] === id);
+        if (newListTitle) {
+            // @ts-ignore
+            newListTitle[1].title = newTitle;
+        }
         if (props.renameList && newListTitle) {
-            props.renameList(id, newListTitle);
+            // @ts-ignore
+            props.renameList(boardId, id, newListTitle[1].position, newListTitle[1].title );
         }
     }
 
@@ -65,10 +75,11 @@ const Lists = (props: Props) => {
     )
 }
 
-const mapStateToProps = (state: IState) => {
-    const {lists} = state.lists
+const mapStateToProps = (state: any) => {
+    const {boards} = state.boards
     const {isActiveListCreator} = state.popOver
-    return {lists, isActiveListCreator};
+    const {loading} = state.dataRequest
+    return {boards, isActiveListCreator, loading};
 }
 
 export default connect(mapStateToProps, actions)(Lists);

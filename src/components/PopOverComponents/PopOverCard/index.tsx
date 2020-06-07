@@ -5,44 +5,62 @@ import {ILists, IState} from "../../../types";
 import {connect} from "react-redux";
 import * as actions from "../../../redux/actions";
 import {CardDescription} from "./CardDescription";
-
+import {useHistory} from "react-router";
+import {changeTitle} from "../../Boards/BoardsRender";
+import {CardSidebar} from "./CardSidebar";
 
 const PopOverCard = (props: any) => {
-    const {lists, isActivePopOverCard, dataPopOverCard} = props
-    const expectedList = lists.find((list: ILists) => {
-        return (list.id === dataPopOverCard.listId
-            && list.boardId === dataPopOverCard.boardId)
-    })
-    return (
-        <div className={`popover-wrapper ${isActivePopOverCard ? 'show' : 'hide'}`}>
-            <div className="popover-card">
+  const {isActivePopOverCard, dataPopOverCard, boards, update} = props
+  const history = useHistory()
+  if(dataPopOverCard.boardId === undefined) {
+    return null
+  }
+  const {lists} = boards.find((board: { id: number; }) => board.id === dataPopOverCard.boardId);
+  const expectedLists = Object.entries(lists)
+  const list = expectedLists.find((element: any) => {
+    if (element[0] === dataPopOverCard.listId) {
+      return element
+    }
+  })
+  const closeCard = () => {
+    const title = boards.find((b: any) => b.id === dataPopOverCard.boardId).title;
+    /*const board = boards.find((b: any) => b.id === dataPopOverCard.boardId);
+    board.lists[dataPopOverCard.listId].title = 'test'*/
+    history.push(`/b/${dataPopOverCard.boardId}/${changeTitle(title)}`)
+    props.popOverCard(dataPopOverCard)
+    /*props.rewriteBoard(dataPopOverCard.boardId, board)*/
+  }
+  return (
+      <div className={`popover-wrapper ${isActivePopOverCard ? 'show' : 'hide'}`}>
+        <div className="popover-card">
                 <span
                     className="popover-card__close"
-                    onClick={props.popOverCard}
+                    onClick={() => closeCard()}
                 >x</span>
-                <div className="popover-card-container">
-                    <CardHeader
-                        card={dataPopOverCard}
-                        list={expectedList}
-                        renameCard={props.renameCard}
-                    />
-                    <div className="popover-card-main">
-                        <CardDescription
-                            card={dataPopOverCard}
-                            renameCard={props.renameCard}
-                        />
-                    </div>
-                    <div className="popover-card-sidebar">
-                    </div>
-                </div>
+          <div className="popover-card-container">
+            <CardHeader
+                data={dataPopOverCard}
+                renameCard={props.renameCard}
+                list={list}
+            />
+            <div className="popover-card-main">
+              <CardDescription
+                  data={dataPopOverCard}
+                  editDescriptionInCard={props.editDescriptionInCard}
+              />
             </div>
+            <div className="popover-card-sidebar">
+              <CardSidebar/>
+            </div>
+          </div>
         </div>
-    )
+      </div>
+  )
 }
-const mapStateToProps = (state: IState) => {
-    const {lists} = state.lists
-    const {isActivePopOverCard, dataPopOverCard} = state.popOver
-    return {lists, isActivePopOverCard, dataPopOverCard};
+const mapStateToProps = (state: any) => {
+  const {boards, update} = state.boards
+  const {isActivePopOverCard, dataPopOverCard} = state.popOver
+  return {isActivePopOverCard, dataPopOverCard, boards, update};
 }
 
 export default connect(mapStateToProps, actions)(PopOverCard);

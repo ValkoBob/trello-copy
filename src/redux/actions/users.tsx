@@ -1,25 +1,16 @@
-import axios from 'axios';
-import {ADD_USER, DELETE_USER} from "../constants";
-const apiUrl = 'http://localhost:3000/api/data-api';
+import {LOGIN_USER, SIGNUP_USER, USER_IN_LOCAL} from "../constants";
+import {fetchData} from "./data-request";
 
-export const addUser = (user: any) => {
-    return {
-        type: ADD_USER,
-        payload: {user}
-    }
-};
+export const loginUser = (email: string, password: string) =>
+    fetchData("post", `/login`, LOGIN_USER, {email, password});
 
-export const deleteUser = (id: number) => {
-    return (dispatch: (arg0: any) => void) => {
-        return axios.get(`${apiUrl}/delete/${id}`)
-            .then(response => {
-                dispatch({
-                    type: DELETE_USER,
-                    payload: {id}
-                })
-            })
-            .catch(error => {
-                throw(error);
-            });
-    };
-};
+export const signupUser = (email: string, password: string) =>
+    fetchData("post", `/user`, SIGNUP_USER, {email, password});
+
+export const userInLocal = (token: number) => {
+  return {
+    type: USER_IN_LOCAL,
+    payload: token
+  }
+}
+

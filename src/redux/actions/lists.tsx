@@ -1,18 +1,77 @@
 import {
-    CREATE_LIST, DELETE_LIST, FETCH_LISTS, RENAME_LIST
+    UPDATE_BOARD
 } from "../constants/";
-import {fetchData} from "./data-request";
+import {requestData, requestDataError, requestDataSuccess} from "./data-request";
 import {ILists} from "../../types";
+import API from "../../api";
+import store from "../store";
 
-export const fetchLists = () =>
-    fetchData("get", `/list`, FETCH_LISTS, null)
 
-export const createList = (boardId: string, title: string, position: number, archived: boolean) =>
-    fetchData("post", `/list`, CREATE_LIST, {boardId, title, position, archived})
+export const createList = (boardId: number, title: string, position: number) => {
+    return async (dispatch: (arg0: { type: string }) => void) => {
+        requestData();
+        try {
+            const response = await API({
+                method: "post", url: `/board/${boardId}/list`, data: {title, position},
+                headers: {
+                    'Content-Type': 'application/json',
+                    authorization: `Bearer ${store.getState().users.token}`
+                }
+            })
+            requestDataSuccess()
+            dispatch({
+                type: UPDATE_BOARD
+            });
+        } catch (error) {
+            requestDataError(error)
+            console.log(error)
+            throw(error);
+        }
+    };
+}
 
-export const deleteList = (id: string) => {
-    fetchData("delete", `/list/${id}`, DELETE_LIST, null);
+export const deleteList = (boardId: number, listId: number) => {
+    return async (dispatch: (arg0: { type: string }) => void) => {
+        requestData();
+        try {
+            const response = await API({
+                method: "delete", url: `/board/${boardId}/list/${listId}`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    authorization: `Bearer ${store.getState().users.token}`
+                }
+            })
+            requestDataSuccess()
+            dispatch({
+                type: UPDATE_BOARD
+            });
+        } catch (error) {
+            requestDataError(error)
+            console.log(error)
+            throw(error);
+        }
+    };
 };
 
-export const renameList = (listId: string, newData: ILists) =>
-    fetchData("put", `/list/${listId}`, RENAME_LIST, newData)
+export const renameList = (boardId: number, id: number, position: number, title: string) =>{
+    return async (dispatch: (arg0: { type: string }) => void) => {
+        requestData();
+        try {
+            const response = await API({
+                method: "put", url: `/board/${boardId}/list/${id}`, data: {position, title},
+                headers: {
+                    'Content-Type': 'application/json',
+                    authorization: `Bearer ${store.getState().users.token}`
+                }
+            })
+            requestDataSuccess()
+            dispatch({
+                type: UPDATE_BOARD
+            });
+        } catch (error) {
+            requestDataError(error)
+            console.log(error)
+            throw(error);
+        }
+    };
+}
